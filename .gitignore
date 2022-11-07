@@ -272,3 +272,4 @@ Spotify-Front/!*.xcodeproj/project.xcworkspace/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,java,cocoapods,intellij,xcode
+.DS_Store
