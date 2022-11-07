@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		966CF0952919545A00413486 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0942919545A00413486 /* Util.swift */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		966CF0942919545A00413486 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		966CF0932919544F00413486 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				966CF0942919545A00413486 /* Util.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		96D694A42918EF6300F307A4 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		96D694AF2918EF6400F307A4 /* Spotify-Front */ = {
 			isa = PBXGroup;
 			children = (
+				966CF0932919544F00413486 /* Common */,
 				96D694B02918EF6400F307A4 /* AppDelegate.swift */,
 				96D694B22918EF6400F307A4 /* SceneDelegate.swift */,
 				96D694B42918EF6400F307A4 /* ViewController.swift */,
@@ -257,6 +268,7 @@
 				96D694B52918EF6400F307A4 /* ViewController.swift in Sources */,
 				96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */,
 				96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */,
+				966CF0952919545A00413486 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
