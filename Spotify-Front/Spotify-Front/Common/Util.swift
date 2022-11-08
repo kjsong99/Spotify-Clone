@@ -8,6 +8,18 @@
 import Foundation
 import UIKit
 
+var width : CGFloat = UIScreen.main.bounds.width
+var height : CGFloat = UIScreen.main.bounds.height
+
+func convertWidth(originValue : CGFloat) -> CGFloat{
+    return originValue / 375 * width
+    
+}
+
+func convertHeight(originValue : CGFloat) -> CGFloat{
+    return originValue / 812 * height
+}
+
 
 func hexStringToUIColor (hex:String) -> UIColor {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

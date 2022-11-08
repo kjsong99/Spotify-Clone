@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		966CF0952919545A00413486 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0942919545A00413486 /* Util.swift */; };
+		966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF099291A863F00413486 /* Circular Std Font.otf */; };
+		966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF09B291A880E00413486 /* CircularStd-Bold.ttf */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -37,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		966CF0942919545A00413486 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		966CF097291A855F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular Std Font.otf"; path = "../../../../../Downloads/Circular Std Font.otf"; sourceTree = "<group>"; };
+		966CF099291A863F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Std Font.otf"; sourceTree = "<group>"; };
+		966CF09B291A880E00413486 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.ttf"; path = "../../../../Downloads/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +89,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		966CF096291A854E00413486 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				966CF097291A855F00413486 /* Circular Std Font.otf */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		96D694A42918EF6300F307A4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +120,9 @@
 		96D694AF2918EF6400F307A4 /* Spotify-Front */ = {
 			isa = PBXGroup;
 			children = (
+				966CF09B291A880E00413486 /* CircularStd-Bold.ttf */,
+				966CF099291A863F00413486 /* Circular Std Font.otf */,
+				966CF096291A854E00413486 /* resources */,
 				966CF0932919544F00413486 /* Common */,
 				96D694B02918EF6400F307A4 /* AppDelegate.swift */,
 				96D694B22918EF6400F307A4 /* SceneDelegate.swift */,
@@ -241,6 +257,8 @@
 			files = (
 				96D694BD2918EF6700F307A4 /* LaunchScreen.storyboard in Resources */,
 				96D694BA2918EF6700F307A4 /* Assets.xcassets in Resources */,
+				966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */,
+				966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
