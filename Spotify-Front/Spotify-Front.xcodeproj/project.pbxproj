@@ -10,6 +10,8 @@
 		966CF0952919545A00413486 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0942919545A00413486 /* Util.swift */; };
 		966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF099291A863F00413486 /* Circular Std Font.otf */; };
 		966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF09B291A880E00413486 /* CircularStd-Bold.ttf */; };
+		966CF09F291A8BE100413486 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */; };
+		966CF0A2291A8E2F00413486 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0A1291A8E2F00413486 /* Playlist.swift */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -42,6 +44,8 @@
 		966CF097291A855F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular Std Font.otf"; path = "../../../../../Downloads/Circular Std Font.otf"; sourceTree = "<group>"; };
 		966CF099291A863F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Std Font.otf"; sourceTree = "<group>"; };
 		966CF09B291A880E00413486 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.ttf"; path = "../../../../Downloads/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
+		966CF0A1291A8E2F00413486 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,22 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		966CF09D291A8BA300413486 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		966CF0A0291A8E1C00413486 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				966CF0A1291A8E2F00413486 /* Playlist.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		96D694A42918EF6300F307A4 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +140,8 @@
 		96D694AF2918EF6400F307A4 /* Spotify-Front */ = {
 			isa = PBXGroup;
 			children = (
+				966CF0A0291A8E1C00413486 /* Model */,
+				966CF09D291A8BA300413486 /* View */,
 				966CF09B291A880E00413486 /* CircularStd-Bold.ttf */,
 				966CF099291A863F00413486 /* Circular Std Font.otf */,
 				966CF096291A854E00413486 /* resources */,
@@ -287,6 +309,8 @@
 				96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */,
 				96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */,
 				966CF0952919545A00413486 /* Util.swift in Sources */,
+				966CF09F291A8BE100413486 /* PlaylistCollectionViewCell.swift in Sources */,
+				966CF0A2291A8E2F00413486 /* Playlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
