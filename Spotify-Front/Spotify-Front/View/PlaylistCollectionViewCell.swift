@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.backgroundColor = .clear
@@ -19,7 +19,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     let nameView: UIView = {
        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = hexStringToUIColor(hex: "#252525")
         return view
     }()
@@ -30,7 +29,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "CircularStd-Bold", size: 12)
         label.textColor = .white
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -48,22 +46,29 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         nameView.addSubview(nameLabel)
         contentView.addSubview(nameView)
         
+        imageView.snp.makeConstraints{ make in
+            make.width.equalTo(convertWidth(originValue: 56.0))
+            make.height.equalTo(convertHeight(originValue: 56.0))
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+        }
         
-        imageView.widthAnchor.constraint(equalToConstant: convertWidth(originValue: 56.0)).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: convertHeight(originValue: 56.0)).isActive = true
-        imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        nameView.widthAnchor.constraint(equalToConstant: convertWidth(originValue: 111.0)).isActive = true
-        nameView.heightAnchor.constraint(equalToConstant: convertHeight(originValue: 56.0)).isActive = true
-        nameView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        nameView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        nameView.snp.makeConstraints{ make in
+            make.width.equalTo(convertWidth(originValue: 111.0))
+            make.height.equalTo(convertHeight(originValue: 56.0))
+            make.right.equalToSuperview()
+            make.top.equalToSuperview()
+        }
         
-        nameLabel.topAnchor.constraint(equalTo: nameView.topAnchor, constant: convertHeight(originValue: 8.0)).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: nameView.leftAnchor, constant: convertWidth(originValue: 8.0)).isActive = true
-        nameLabel.rightAnchor.constraint(equalTo: nameView.rightAnchor, constant: -1 * convertWidth(originValue: 8.0)).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: nameView.bottomAnchor, constant: -1 * convertHeight(originValue: 8.0)).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: convertWidth(originValue: 87.0)).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: convertHeight(originValue: 87.0)).isActive = true
+        nameLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview().offset(convertHeight(originValue: 8.0))
+            make.left.equalToSuperview().offset(convertWidth(originValue: 8.0))
+            make.right.equalToSuperview().offset(-1 * convertWidth(originValue: 8.0))
+            make.bottom.equalToSuperview().offset(-1 * convertHeight(originValue: 8.0))
+            make.width.equalTo(convertWidth(originValue: 87.0))
+            make.height.equalTo(convertHeight(originValue: 87.0))
+        }
+        
     }
     
     func configure(playlist: Playlist){

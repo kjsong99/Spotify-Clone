@@ -13,11 +13,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        let tab = UITabBarController()
+        tab.tabBar.tintColor = .white
+        tab.tabBarItem.badgeColor = hexStringToUIColor(hex: "#B3B3B3")
+        let HomeVC = ViewController()
+        let SearchVC = SearchViewController()
+        let LibraryVC = LibraryViewController()
+        
+        HomeVC.tabBarItem.image = UIImage(named: "home")
+        SearchVC.tabBarItem.image = UIImage(named: "search")
+        LibraryVC.tabBarItem.image = UIImage(named: "library")
+        
+        tab.setViewControllers([HomeVC, SearchVC, LibraryVC], animated: false)
+        let nav = UINavigationController(rootViewController: tab)
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 //        window?.backgroundColor = UIColor(red: 18, green: 18, blue: 18)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
     

@@ -1,0 +1,20 @@
+PODS:
+  - MSPeekCollectionViewDelegateImplementation (3.2.0)
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - MSPeekCollectionViewDelegateImplementation
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - MSPeekCollectionViewDelegateImplementation
+    - SnapKit
+
+SPEC CHECKSUMS:
+  MSPeekCollectionViewDelegateImplementation: be35a217bd302976a9e4476151be992c1f150127
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+
+PODFILE CHECKSUM: f0b608aa7c0e52ffb5592723ddb90adb2e1e2d1b
+
+COCOAPODS: 1.11.3
