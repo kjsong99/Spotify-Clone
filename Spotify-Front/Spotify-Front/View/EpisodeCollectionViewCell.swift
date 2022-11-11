@@ -16,12 +16,13 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     let labelView : UIView = {
        let view = UIView()
+        view.backgroundColor = .black
         return view
     }()
     
     let btnView : UIView = {
        let view = UIView()
-
+        view.backgroundColor = .black
         return view
     }()
     
@@ -31,7 +32,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         textView.textAlignment = .left
         textView.clipsToBounds = true
         textView.isScrollEnabled = false
-
+        textView.backgroundColor = .clear
         textView.textContainerInset = .zero
         textView.textColor = .white
         return textView
@@ -43,7 +44,9 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         textView.font = UIFont(name: "CircularStd-Book", size: 13)
         textView.textAlignment = .left
         textView.textContainerInset = .zero
+        textView.backgroundColor = .clear
 
+        
         textView.clipsToBounds = true
         textView.isScrollEnabled = false
 

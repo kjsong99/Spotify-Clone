@@ -7,8 +7,14 @@ class ViewController: UIViewController{
         setGradient()
         setLayout()
         setCollectionView()
+        scrollView.contentInsetAdjustmentBehavior = .never
+        
+        
+        
         
     }
+    
+
     
     let playlists = [Playlist(name: "It's Only Me", imageName: "Image 1"), Playlist(name: "Lead Position", imageName: "Image 2"), Playlist(name: "DRILL MUSIC IN ZION", imageName: "Image 3"), Playlist(name: "GOD DID", imageName: "Image 4"), Playlist(name: "EGOT the EP", imageName: "Image 5"), Playlist(name: "Enter The Wu-Tang (36 Chambers)", imageName: "Image 6")]
     
@@ -20,22 +26,49 @@ class ViewController: UIViewController{
         playlistCollectionView.delegate = self
         playlistCollectionView.dataSource = self
         playlistCollectionView.register(PlaylistCollectionViewCell.self, forCellWithReuseIdentifier: "playlistCell")
+        playlistCollectionView.backgroundColor = .black
         
         episodeCollectionView.delegate = self
         episodeCollectionView.dataSource = self
         episodeCollectionView.register(EpisodeCollectionViewCell.self, forCellWithReuseIdentifier: "episodeCell")
+        episodeCollectionView.backgroundColor = .black
         
         
     }
     
+    // MARK: - Constraints
+    
     func setLayout(){
-        view.addSubview(bellButton)
-        view.addSubview(clockButton)
-        view.addSubview(settingButton)
-        view.addSubview(greetLabel)
-        view.addSubview(playlistCollectionView)
-        view.addSubview(episodeCollectionView)
-        view.addSubview(episodeLabel)
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(mainView)
+        view.addSubview(playingView)
+        mainView.addSubview(bellButton)
+        mainView.addSubview(clockButton)
+        mainView.addSubview(settingButton)
+        mainView.addSubview(greetLabel)
+        mainView.addSubview(playlistCollectionView)
+        mainView.addSubview(episodeCollectionView)
+        mainView.addSubview(episodeLabel)
+        
+        scrollView.snp.makeConstraints{ view in
+            view.left.right.top.width.equalToSuperview()
+            view.height.equalToSuperview()
+            view.bottom.equalToSuperview()
+            
+        }
+        mainView.snp.makeConstraints{ view in
+            
+           
+            view.width.equalTo(scrollView.frameLayoutGuide)
+            view.left.right.equalToSuperview()
+            view.top.equalToSuperview()
+            view.bottom.equalToSuperview()
+            view.height.equalTo(scrollView.snp.height).multipliedBy(2)
+            
+            
+            
+        }
         
         bellButton.snp.makeConstraints{ make in
             make.width.equalTo(convertWidth(originValue: 19.0))
@@ -57,7 +90,7 @@ class ViewController: UIViewController{
             make.top.equalToSuperview().offset(convertHeight(originValue: 80.0))
             make.right.equalToSuperview().offset(-1 * convertWidth(originValue: 15.2))
         }
-        
+    
         greetLabel.snp.makeConstraints{ make in
             make.width.equalTo(convertWidth(originValue: 191.0))
             make.height.equalTo(convertHeight(originValue: 50.0))
@@ -87,10 +120,39 @@ class ViewController: UIViewController{
             make.right.equalToSuperview()
         }
         
+        playingView.snp.makeConstraints{ view in
+            view.left.right.width.equalToSuperview()
+            view.height.equalTo(convertHeight(originValue: 56.0))
+            view.bottom.equalToSuperview()
+//            view.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-1 * convertHeight(originValue: 20.0))
+        }
+        
+        
         
         
     }
     
+    // MARK: - UI Variable
+    let scrollView : UIScrollView = {
+       let view = UIScrollView()
+        return view
+    }()
+    
+    let mainView : UIView = {
+        let view = UIView()
+//        view.insetsLayoutMarginsFromSafeArea = false
+        return view
+    }()
+    
+    
+    let playingView = {
+        let song = Music(name: "Introverted", singer: "Elzhi", length: 125, imageName: "Image 9")
+
+        let view = nowPlayingView()
+        view.backgroundColor = hexStringToUIColor(hex: "#232323")
+        view.configure(music: song)
+        return view
+    }()
     let playlistCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -140,6 +202,8 @@ class ViewController: UIViewController{
         return button
     }()
     
+    // MARK: - Gradient
+    
     func setGradient(){
         let gradient = CAGradientLayer()
         gradient.colors = [
@@ -164,6 +228,9 @@ class ViewController: UIViewController{
     
     
 }
+
+
+// MARK: - Extension
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.playlistCollectionView{

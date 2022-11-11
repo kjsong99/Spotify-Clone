@@ -14,18 +14,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let tab = UITabBarController()
+
         tab.tabBar.tintColor = .white
         tab.tabBarItem.badgeColor = hexStringToUIColor(hex: "#B3B3B3")
+        tab.tabBar.barTintColor = .black
+        tab.tabBar.isTranslucent = false
+//        tab.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
+//        tab.tabBar.heightAnchor.constraint(equalToConstant: convertHeight(originValue: 100.0)).isActive = true
         let HomeVC = ViewController()
         let SearchVC = SearchViewController()
         let LibraryVC = LibraryViewController()
-        
         HomeVC.tabBarItem.image = UIImage(named: "home")
+        HomeVC.title = "Home"
         SearchVC.tabBarItem.image = UIImage(named: "search")
+        SearchVC.title = "Search"
         LibraryVC.tabBarItem.image = UIImage(named: "library")
+        LibraryVC.title = "My Library"
         
         tab.setViewControllers([HomeVC, SearchVC, LibraryVC], animated: false)
         let nav = UINavigationController(rootViewController: tab)
+        nav.navigationBar.isHidden = true
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 //        window?.backgroundColor = UIColor(red: 18, green: 18, blue: 18)
@@ -64,4 +72,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
 }
+
 

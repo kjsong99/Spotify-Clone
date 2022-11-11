@@ -42,3 +42,15 @@ func hexStringToUIColor (hex:String) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+
+extension Int {
+  var hour: Int {
+    self / 3600
+  }
+  var minute: Int {
+    (self % 3600) / 60
+  }
+  var seconds: Int {
+    (self % 60)
+  }
+}
