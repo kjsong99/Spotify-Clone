@@ -9,18 +9,25 @@ import UIKit
 import Foundation
 import SnapKit
 
+enum status {
+    case end
+    case pause
+    case play
+}
+
 class nowPlayingView: UIView {
     var max: Float = 0.0
     var interval: Float = 0.0
     var time: Float = 0.0
     var timer: Timer?
+    var nowPlaying: status = status.end
 
 
     @objc func setProgress() {
         time += interval
-        progressView.setProgress(time, animated: true)
-        if time >= max {
-            timer!.invalidate()
+        progressView.setProgress(time, animated: false)
+        if time >= 1.0 {
+            end()
         }
     }
     override init(frame: CGRect) {
@@ -64,7 +71,9 @@ class nowPlayingView: UIView {
     
     let playBtn : UIButton = {
         let button = UIButton()
+        button.tintColor = .white
         button.setImage(UIImage(named: "play"), for: .normal)
+        button.addTarget(self, action: #selector(playBtnTapped), for: .touchDown)
         return button
     }()
     
@@ -73,9 +82,25 @@ class nowPlayingView: UIView {
         view.trackTintColor = hexStringToUIColor(hex: "#5B5B5B")
         view.progressTintColor = .white
         view.progressViewStyle = .default
+        
         return view
     }()
     
+    @objc func playBtnTapped(){
+        if nowPlaying == status.play {
+            //일시정지 로직
+            pause()
+           
+        }else if nowPlaying == status.end{
+            //재생 로직
+            time = 0.0
+            play()
+            
+        }else if nowPlaying == status.pause{
+            //재생 로직 (일시정지 상태에서)
+            play()
+        }
+    }
     func setLayout(){
         self.addSubview(albumImageView)
         self.addSubview(nameLabel)
@@ -128,13 +153,42 @@ class nowPlayingView: UIView {
         
     }
     
+    func pause(){
+        timer?.invalidate()
+        playBtn.setImage(UIImage(named: "play"), for: .normal)
+        nowPlaying = status.pause
+    }
+    
+    func play(){
+        nowPlaying = status.play
+        playBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
+    }
+    
+    func end(){
+        timer?.invalidate()
+        playBtn.setImage(UIImage(named: "play"), for: .normal)
+        nowPlaying = status.end
+    }
+    
     func configure(music : Music){
         nameLabel.text = music.name
         singerLabel.text = music.singer
         albumImageView.image = UIImage(named: music.imageName)
-//        interval = 1.0 / Float(music.length)
-//        max = Float(music.length)
-//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setProgress), userInfo: nil, repeats: true)
+        interval = 1.0 / Float(music.length)
+        max = Float(music.length)
+
     }
     
+    
+}
+
+extension nowPlayingView {
+    func setConstraints(){
+        self.snp.makeConstraints{ view in
+            view.left.right.width.equalToSuperview()
+            view.height.equalTo(convertHeight(originValue: 56.0))
+            view.bottom.equalToSuperview()
+        }
+    }
 }

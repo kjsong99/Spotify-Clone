@@ -53,6 +53,8 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return textView
     }()
     
+  
+    
     let infoLabel : UILabel = {
         let label = UILabel()
         label.textColor = hexStringToUIColor(hex: "#A7A7A7")

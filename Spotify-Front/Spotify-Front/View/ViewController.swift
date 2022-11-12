@@ -2,8 +2,28 @@ import UIKit
 import SnapKit
 class ViewController: UIViewController{
 
+    private func setUpAlwaysVisibleView(){
+        let playingView = {
+            let view = nowPlayingView()
+            view.backgroundColor = hexStringToUIColor(hex: "#232323")
+            view.configure(music: song)
+            return view
+            
+        }()
+        guard let tabBarController = self.tabBarController else { return }
+            tabBarController.view.insertSubview(playingView, belowSubview: tabBarController.tabBar)
+        
+        playingView.snp.makeConstraints{ make in
+            make.bottom.equalTo(tabBarController.tabBar.snp.top)
+            make.centerX.equalTo(tabBarController.view.snp.centerX)
+            make.width.equalToSuperview()
+            make.height.equalTo(convertHeight(originValue: 56.0))
+        }
+        
+
+    }
     override func viewDidLoad() {
-        super.viewDidLoad()
+        setUpAlwaysVisibleView()
         setGradient()
         setLayout()
         setCollectionView()
@@ -15,12 +35,6 @@ class ViewController: UIViewController{
     }
     
 
-    
-    let playlists = [Playlist(name: "It's Only Me", imageName: "Image 1"), Playlist(name: "Lead Position", imageName: "Image 2"), Playlist(name: "DRILL MUSIC IN ZION", imageName: "Image 3"), Playlist(name: "GOD DID", imageName: "Image 4"), Playlist(name: "EGOT the EP", imageName: "Image 5"), Playlist(name: "Enter The Wu-Tang (36 Chambers)", imageName: "Image 6")]
-    
-    let episodes = [Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min"), Episode(name: "211 - How to give and receive feedback - with Eric Moore", imageName: "Image 8", content: "Criticism is easily given, but rarely appreciated. At some point", day: "Fri", length: "53 min"), Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min"), Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min")]
-    
- 
     
     func setCollectionView(){
         playlistCollectionView.delegate = self
@@ -42,7 +56,7 @@ class ViewController: UIViewController{
         view.addSubview(scrollView)
         
         scrollView.addSubview(mainView)
-        view.addSubview(playingView)
+//        view.addSubview(playingView)
         mainView.addSubview(bellButton)
         mainView.addSubview(clockButton)
         mainView.addSubview(settingButton)
@@ -120,16 +134,11 @@ class ViewController: UIViewController{
             make.right.equalToSuperview()
         }
         
-        playingView.snp.makeConstraints{ view in
-            view.left.right.width.equalToSuperview()
-            view.height.equalTo(convertHeight(originValue: 56.0))
-            view.bottom.equalToSuperview()
-//            view.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-1 * convertHeight(originValue: 20.0))
-        }
-        
-        
-        
-        
+//        playingView.snp.makeConstraints{ view in
+//            view.left.right.width.equalToSuperview()
+//            view.height.equalTo(convertHeight(originValue: 56.0))
+//            view.bottom.equalToSuperview()
+//        }
     }
     
     // MARK: - UI Variable
@@ -145,14 +154,12 @@ class ViewController: UIViewController{
     }()
     
     
-    let playingView = {
-        let song = Music(name: "Introverted", singer: "Elzhi", length: 125, imageName: "Image 9")
-
-        let view = nowPlayingView()
-        view.backgroundColor = hexStringToUIColor(hex: "#232323")
-        view.configure(music: song)
-        return view
-    }()
+//    let playingView = {
+//        let view = nowPlayingView()
+//        view.backgroundColor = hexStringToUIColor(hex: "#232323")
+//        view.configure(music: song)
+//        return view
+//    }()
     let playlistCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)

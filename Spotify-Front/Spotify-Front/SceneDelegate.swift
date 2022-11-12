@@ -6,21 +6,20 @@
 //
 
 import UIKit
-
+import SnapKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+ 
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let tab = UITabBarController()
-
+        
         tab.tabBar.tintColor = .white
         tab.tabBarItem.badgeColor = hexStringToUIColor(hex: "#B3B3B3")
         tab.tabBar.barTintColor = .black
         tab.tabBar.isTranslucent = false
-//        tab.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
-//        tab.tabBar.heightAnchor.constraint(equalToConstant: convertHeight(originValue: 100.0)).isActive = true
         let HomeVC = ViewController()
         let SearchVC = SearchViewController()
         let LibraryVC = LibraryViewController()
@@ -36,10 +35,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         nav.navigationBar.isHidden = true
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-//        window?.backgroundColor = UIColor(red: 18, green: 18, blue: 18)
         window?.windowScene = windowScene
+        
+        
         window?.rootViewController = nav
+        
+    
         window?.makeKeyAndVisible()
+        
+//
+//        window?.addSubview(playingView)
+//        playingView.snp.makeConstraints{ view in
+//            view.left.right.width.equalToSuperview()
+//            view.height.equalTo(convertHeight(originValue: 56.0))
+//            view.bottom.equalToSuperview().offset(-1 * 80)
+//        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
