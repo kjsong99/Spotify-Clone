@@ -1,37 +1,11 @@
 import UIKit
 import SnapKit
 class ViewController: UIViewController{
-
-    private func setUpAlwaysVisibleView(){
-        let playingView = {
-            let view = nowPlayingView()
-            view.backgroundColor = hexStringToUIColor(hex: "#232323")
-            view.configure(music: song)
-            return view
-            
-        }()
-        guard let tabBarController = self.tabBarController else { return }
-            tabBarController.view.insertSubview(playingView, belowSubview: tabBarController.tabBar)
-        
-        playingView.snp.makeConstraints{ make in
-            make.bottom.equalTo(tabBarController.tabBar.snp.top)
-            make.centerX.equalTo(tabBarController.view.snp.centerX)
-            make.width.equalToSuperview()
-            make.height.equalTo(convertHeight(originValue: 56.0))
-        }
-        
-
-    }
     override func viewDidLoad() {
-        setUpAlwaysVisibleView()
         setGradient()
         setLayout()
         setCollectionView()
         scrollView.contentInsetAdjustmentBehavior = .never
-        
-        
-        
-        
     }
     
 
@@ -56,7 +30,6 @@ class ViewController: UIViewController{
         view.addSubview(scrollView)
         
         scrollView.addSubview(mainView)
-//        view.addSubview(playingView)
         mainView.addSubview(bellButton)
         mainView.addSubview(clockButton)
         mainView.addSubview(settingButton)
@@ -212,6 +185,7 @@ class ViewController: UIViewController{
     // MARK: - Gradient
     
     func setGradient(){
+        view.backgroundColor = hexStringToUIColor(hex: "#957C4D")
         let gradient = CAGradientLayer()
         gradient.colors = [
             hexStringToUIColor(hex: "#957C4D").withAlphaComponent(0.7).cgColor,

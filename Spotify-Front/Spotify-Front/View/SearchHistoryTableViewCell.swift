@@ -71,7 +71,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
         
         deleteBtn.snp.makeConstraints{ btn in
             btn.centerY.equalToSuperview()
-            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 14.0))
+            btn.right.equalToSuperview()
             //            btn.width.equalTo(convertWidth(originValue: 12.0))
             //            btn.height.equalTo(convertHeight(originValue: 12.0))
         }

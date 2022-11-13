@@ -10,27 +10,25 @@ import SnapKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
- 
-    
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let tab = UITabBarController()
         
+        let tab = UITabBarController()
         tab.tabBar.tintColor = .white
         tab.tabBarItem.badgeColor = hexStringToUIColor(hex: "#B3B3B3")
         tab.tabBar.barTintColor = .black
         tab.tabBar.isTranslucent = false
-        let HomeVC = ViewController()
-        let SearchVC = SearchViewController()
-        let LibraryVC = LibraryViewController()
-        HomeVC.tabBarItem.image = UIImage(named: "home")
-        HomeVC.title = "Home"
-        SearchVC.tabBarItem.image = UIImage(named: "search")
-        SearchVC.title = "Search"
-        LibraryVC.tabBarItem.image = UIImage(named: "library")
-        LibraryVC.title = "My Library"
+        tab.title = nil
+        let tabs = [ViewController(), SearchViewController(), LibraryViewController()]
+        let imageNames = ["home", "tab search", "library"]
         
-        tab.setViewControllers([HomeVC, SearchVC, LibraryVC], animated: false)
+        for vc in tabs{
+            vc.tabBarItem.image = UIImage(named: imageNames[tabs.firstIndex(of: vc)!])
+            vc.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
+            vc.title = nil
+        }
+        
+        tab.setViewControllers(tabs, animated: false)
         let nav = UINavigationController(rootViewController: tab)
         nav.navigationBar.isHidden = true
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -40,16 +38,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.rootViewController = nav
         
-    
+        
         window?.makeKeyAndVisible()
         
-//
-//        window?.addSubview(playingView)
-//        playingView.snp.makeConstraints{ view in
-//            view.left.right.width.equalToSuperview()
-//            view.height.equalTo(convertHeight(originValue: 56.0))
-//            view.bottom.equalToSuperview().offset(-1 * 80)
-//        }
+        tab.view.insertSubview(playingView, belowSubview: tab.tabBar)
+        
+        playingView.snp.makeConstraints{ make in
+            make.bottom.equalTo(tab.tabBar.snp.top)
+            make.centerX.equalTo(tab.view.snp.centerX)
+            make.width.equalToSuperview()
+            make.height.equalTo(convertHeight(originValue: 56.0))
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -14,16 +14,16 @@ class SearchViewController: UIViewController {
         view.insetsLayoutMarginsFromSafeArea = true
         setLayout()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.hideKeyboardWhenTappedAround()
         setTableView()
-
+        
     }
     
     func setLayout(){
-      
+        
         view.addSubview(searchFieldView)
         searchFieldView.addSubview(searchField)
         searchFieldView.addSubview(searchImage)
@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
         }
         
         searchField.snp.makeConstraints{ field in
-//            field.centerX.equalToSuperview()
+            //            field.centerX.equalToSuperview()
             field.centerY.equalToSuperview()
             field.width.lessThanOrEqualToSuperview()
             field.height.equalTo(convertHeight(originValue: 16.0))
@@ -77,8 +77,9 @@ class SearchViewController: UIViewController {
         }
         
         searchHistoryTableView.snp.makeConstraints{ tableView in
-            tableView.width.equalToSuperview()
-            tableView.top.equalTo(recentLabel.snp.bottom).offset(10.0)
+            tableView.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
+            tableView.right.equalToSuperview().offset(-1 * convertWidth(originValue: 14.0))
+            tableView.top.equalTo(recentLabel.snp.bottom).offset(convertHeight(originValue: 19.0))
             tableView.bottom.equalToSuperview()
         }
     }
@@ -94,20 +95,20 @@ class SearchViewController: UIViewController {
     
     
     let searchFieldView : UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = hexStringToUIColor(hex: "#242424")
         view.layer.cornerRadius = 8.0
         return view
     }()
     let searchImage : UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(named: "search")
         image.tintColor = .white
         return image
     }()
     
     let searchField : UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         field.addTarget(self, action: #selector(textDidChanged), for: .editingChanged)
         field.placeholder = "What do you want to listen to?"
         field.font =  UIFont(name: "CircularStd-Book", size: 16)
@@ -145,12 +146,14 @@ class SearchViewController: UIViewController {
     }()
     
     let searchHistoryTableView : UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
+        tableView.allowsSelection = false
         
         return tableView
     }()
     
     // MARK: - Function
+    
     
     @objc func textDidChanged(_sender: Any?){
         if self.searchField.text?.count != 0 {
@@ -164,24 +167,36 @@ class SearchViewController: UIViewController {
         self.searchField.text = ""
         self.initBtn.isHidden = true
     }
-
+    
 }
 
 // MARK: - Extension
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return histories.count * 3
+        return histories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = searchHistoryTableView.dequeueReusableCell(withIdentifier: "searchHistoryCell", for: indexPath) as? SearchHistoryTableViewCell else {
             return SearchHistoryTableViewCell()
         }
-        cell.configure(search: histories[indexPath.row % 6])
+        cell.configure(search: histories[indexPath.row])
+        cell.deleteBtn.tag = indexPath.row
+        cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
+        
         
         return cell
+    }
+    @objc func handleRegister(_ sender: UIButton){
+        histories.remove(at:sender.tag)
+        searchHistoryTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .none)
+        searchHistoryTableView.reloadData()
     }
     
     
@@ -202,3 +217,4 @@ extension UITextField {
         attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: color])
     }
 }
+

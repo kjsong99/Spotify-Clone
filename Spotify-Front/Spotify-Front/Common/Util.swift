@@ -11,6 +11,14 @@ import UIKit
 var width : CGFloat = UIScreen.main.bounds.width
 var height : CGFloat = UIScreen.main.bounds.height
 
+let playingView = {
+    let view = nowPlayingView()
+    view.backgroundColor = hexStringToUIColor(hex: "#232323")
+    view.configure(music: song)
+    return view
+    
+}()
+
 func convertWidth(originValue : CGFloat) -> CGFloat{
     return originValue / 375 * width
     
@@ -53,4 +61,17 @@ extension Int {
   var seconds: Int {
     (self % 60)
   }
+}
+
+
+extension UIViewController{
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    func hideKeyboardWhenTappedAround(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
 }

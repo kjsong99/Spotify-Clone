@@ -13,7 +13,7 @@ let episodes = [Episode(name: "Things You Thought You Knew - What Is Exit Veloci
 
 let song = Music(name: "Introverted", singer: "Elzhi", length: 125, imageName: "Image 9")
 
-let histories = [Search(name: "Elzhi", imageName: "Search 1", category: .artist, singer: nil),
+var histories = [Search(name: "Elzhi", imageName: "Search 1", category: .artist, singer: nil),
                  Search(name: "Lil Baby", imageName: "Search 2", category: .artist, singer: nil),
                  Search(name: "Reasonable Doubt", imageName: "Search 3", category: .album, singer: "JAY-Z"),
                  Search(name: "Erick the Architect", imageName: "Search 4", category: .artist, singer: nil),
