@@ -62,6 +62,7 @@ class ViewController: UIViewController{
             make.height.equalTo(convertHeight(originValue: 21.0))
             make.top.equalToSuperview().offset(convertHeight(originValue: 82.0))
             make.right.equalTo(clockButton.snp.left).offset(-1 * convertWidth(originValue: 27.5))
+            
         }
         
         clockButton.snp.makeConstraints{ make in
@@ -107,11 +108,6 @@ class ViewController: UIViewController{
             make.right.equalToSuperview()
         }
         
-//        playingView.snp.makeConstraints{ view in
-//            view.left.right.width.equalToSuperview()
-//            view.height.equalTo(convertHeight(originValue: 56.0))
-//            view.bottom.equalToSuperview()
-//        }
     }
     
     // MARK: - UI Variable
@@ -181,6 +177,10 @@ class ViewController: UIViewController{
         button.setImage(UIImage(named: "setting"), for: .normal)
         return button
     }()
+    
+    @objc func makePlayingViewHidden(){
+        playingView.isHidden = true
+    }
     
     // MARK: - Gradient
     

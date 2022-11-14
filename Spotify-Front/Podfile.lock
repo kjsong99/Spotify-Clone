@@ -1,20 +1,24 @@
 PODS:
   - MSPeekCollectionViewDelegateImplementation (3.2.0)
   - SnapKit (5.6.0)
+  - UIImageColors (2.1.0)
 
 DEPENDENCIES:
   - MSPeekCollectionViewDelegateImplementation
   - SnapKit
+  - UIImageColors
 
 SPEC REPOS:
   trunk:
     - MSPeekCollectionViewDelegateImplementation
     - SnapKit
+    - UIImageColors
 
 SPEC CHECKSUMS:
   MSPeekCollectionViewDelegateImplementation: be35a217bd302976a9e4476151be992c1f150127
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: f0b608aa7c0e52ffb5592723ddb90adb2e1e2d1b
+PODFILE CHECKSUM: 72c783b1a409caff9c0586a57d467214642b1168
 
 COCOAPODS: 1.11.3

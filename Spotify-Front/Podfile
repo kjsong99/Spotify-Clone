@@ -8,6 +8,8 @@ target 'Spotify-Front' do
   # Pods for Spotify-Front
   pod 'MSPeekCollectionViewDelegateImplementation'
   pod 'SnapKit'
+  pod 'UIImageColors'
+  
   target 'Spotify-FrontTests' do
     inherit! :search_paths
     # Pods for testing

@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tab.tabBar.barTintColor = .black
         tab.tabBar.isTranslucent = false
         tab.title = nil
-        let tabs = [ViewController(), SearchViewController(), LibraryViewController()]
+        let tabs = [ViewController(), SearchViewController(), AlbumListViewController()]
         let imageNames = ["home", "tab search", "library"]
         
         for vc in tabs{
