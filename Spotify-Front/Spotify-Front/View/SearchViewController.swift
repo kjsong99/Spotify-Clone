@@ -9,21 +9,20 @@ import UIKit
 import SnapKit
 
 class SearchViewController: UIViewController {
-    
-    override func viewWillLayoutSubviews() {
-        setLayout()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.hideKeyboardWhenTappedAround()
+        setLayout()
         setTableView()
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationItem.backButtonTitle = ""
         
     }
     
     func setLayout(){
         
+        view.backgroundColor = hexStringToUIColor(hex: "#191919").withAlphaComponent(0.5)
         view.addSubview(searchFieldView)
         searchFieldView.addSubview(searchField)
         searchFieldView.addSubview(searchImage)
@@ -147,7 +146,6 @@ class SearchViewController: UIViewController {
     
     let searchHistoryTableView : UITableView = {
         let tableView = UITableView()
-        tableView.allowsSelection = false
         
         return tableView
     }()
@@ -173,7 +171,13 @@ class SearchViewController: UIViewController {
 // MARK: - Extension
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        
+        let vc = AlbumListViewController()
+        show(vc, sender: self)
+//        self.navigationController?.pushViewControllerFromLeft(viewControlller: vc)
+    }
     
     
     
@@ -186,6 +190,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         guard let cell = searchHistoryTableView.dequeueReusableCell(withIdentifier: "searchHistoryCell", for: indexPath) as? SearchHistoryTableViewCell else {
             return SearchHistoryTableViewCell()
         }
+        cell.selectionStyle = .none
         cell.configure(search: histories[indexPath.row])
         cell.deleteBtn.tag = indexPath.row
         cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
@@ -218,3 +223,30 @@ extension UITextField {
     }
 }
 
+//extension UINavigationController{
+//    func pushViewControllerFromLeft(viewControlller : UIViewController){
+//        let transition = CATransition()
+//        transition.duration = 0.1
+//        transition.type = .moveIn
+//        transition.subtype = .fromRight
+//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+//        view.window?.layer.add(transition, forKey: kCATransition)
+//        pushViewController(viewControlller, animated: false)
+//        self.setNavigationBarHidden(false, animated: false)
+//        
+//    }
+//    
+//    func popViewControllerToLeft(){
+//        let transition = CATransition()
+//        transition.duration = 0.1
+//        transition.type = .moveIn
+//        transition.subtype = .fromLeft
+//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+//        
+//        view.window?.layer.add(transition, forKey: kCATransition)
+//        
+//        popViewController(animated: false)
+//        self.setNavigationBarHidden(true, animated: false)
+//        
+//    }
+//}

@@ -12,7 +12,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         let tab = UITabBarController()
         tab.tabBar.tintColor = .white
         tab.tabBarItem.badgeColor = hexStringToUIColor(hex: "#B3B3B3")
@@ -30,7 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tab.setViewControllers(tabs, animated: false)
         let nav = UINavigationController(rootViewController: tab)
+        
         nav.navigationBar.isHidden = true
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

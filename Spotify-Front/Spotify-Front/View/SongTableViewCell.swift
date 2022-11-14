@@ -53,7 +53,6 @@ class SongTableViewCell: UITableViewCell {
         }
         
         artistLabel.snp.makeConstraints{ label in
-//            label.bottom.equalToSuperview().offset(-1 * convertHeight(originValue: 13.0))
             label.top.equalTo(nameLabel.snp.bottom).offset(convertHeight(originValue: 8.0))
             label.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
             label.width.lessThanOrEqualTo(convertWidth(originValue: 200.0))

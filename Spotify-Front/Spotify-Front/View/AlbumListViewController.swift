@@ -10,8 +10,9 @@ import SnapKit
 import UIImageColors
 
 class AlbumListViewController: UIViewController {
-    var tableViewBottomConstraint : ConstraintMakerEditable? = nil
     
+
+    let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
         setTableView()
@@ -19,11 +20,19 @@ class AlbumListViewController: UIViewController {
         setGradient()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        songTableView.snp.removeConstraints()
-        updateTableView()
-        view.layoutIfNeeded()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        gradient.removeFromSuperlayer()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        super.viewWillDisappear(animated)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        setGradient()
+        updateTableView()
+    }
+    
     let imageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Search 3")
@@ -103,17 +112,20 @@ class AlbumListViewController: UIViewController {
     let songTableView = {
         let tableView = UITableView()
         tableView.backgroundColor = hexStringToUIColor(hex: "#121212")
+        tableView.separatorStyle = .none
         
         return tableView
     }()
-    
+    func removeGradient(){
+        self.view.layer.sublayers!.remove(at: 0)
+    }
     func setGradient(){
         let colors = [UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1).cgColor,
                       UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 1).cgColor
         ]
         view.backgroundColor = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1)
         
-        let gradient = CAGradientLayer()
+      
         
         gradient.colors = colors
         gradient.locations = [0, 0.48]
@@ -136,19 +148,11 @@ class AlbumListViewController: UIViewController {
     }
     
     func updateTableView(){
-//        if isPlayingViewVisible {
-//            tableViewBottomConstraint?.offset(-1 * playingView.frame.height)
-//        }else{
-//            tableViewBottomConstraint?.offset(0)
-//        }
-        songTableView.snp.makeConstraints{ tableView in
-            
-            tableView.top.equalTo(playBtn.snp.bottom).offset(convertHeight(originValue: 10.0))
-            tableView.left.right.equalToSuperview()
+        songTableView.snp.updateConstraints{ tableView in
             if isPlayingViewVisible {
-                tableViewBottomConstraint = tableView.bottom.equalToSuperview().offset(-1 * playingView.frame.height)
+                tableView.bottom.equalToSuperview().offset(-1 * playingView.frame.height)
             }else{
-                tableViewBottomConstraint = tableView.bottom.equalToSuperview()
+                tableView.bottom.equalToSuperview()
             }
             
         }
@@ -245,7 +249,7 @@ class AlbumListViewController: UIViewController {
             tableView.top.equalTo(playBtn.snp.bottom).offset(convertHeight(originValue: 10.0))
             tableView.left.right.equalToSuperview()
             if isPlayingViewVisible {
-               tableView.bottom.equalToSuperview().offset(-1 * playingView.frame.height)
+                tableView.bottom.equalToSuperview().offset(-1 * playingView.frame.height)
             }else{
                 tableView.bottom.equalToSuperview()
             }
