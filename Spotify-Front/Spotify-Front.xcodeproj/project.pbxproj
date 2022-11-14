@@ -29,6 +29,9 @@
 		966CF0C22922025B00413486 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0C12922025B00413486 /* AlbumListViewController.swift */; };
 		966CF0C4292206E800413486 /* Music 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0C3292206E800413486 /* Music 1.mp3 */; };
 		966CF0C729220EA500413486 /* WaveForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0C629220EA500413486 /* WaveForm.swift */; };
+		966CF0CB292223C900413486 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0CA292223C900413486 /* SongTableViewCell.swift */; };
+		966CF0CD292236B100413486 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */; };
+		966CF0CF29223A7E00413486 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0CE29223A7E00413486 /* Inter-Bold.ttf */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -84,6 +87,9 @@
 		966CF0C12922025B00413486 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		966CF0C3292206E800413486 /* Music 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Music 1.mp3"; path = "../../../../../Downloads/Music 1.mp3"; sourceTree = "<group>"; };
 		966CF0C629220EA500413486 /* WaveForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveForm.swift; sourceTree = "<group>"; };
+		966CF0CA292223C900413486 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-VariableFont_slnt,wght.ttf"; path = "../../../Downloads/Inter/Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
+		966CF0CE29223A7E00413486 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				966CF0C3292206E800413486 /* Music 1.mp3 */,
+				966CF0CE29223A7E00413486 /* Inter-Bold.ttf */,
 				966CF097291A855F00413486 /* Circular Std Font.otf */,
 			);
 			path = resources;
@@ -162,6 +169,7 @@
 				966CF0BD2922013A00413486 /* MusicPlayerViewController.swift */,
 				966CF0BF2922024400413486 /* MusicMenuViewController.swift */,
 				966CF0C12922025B00413486 /* AlbumListViewController.swift */,
+				966CF0CA292223C900413486 /* SongTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 		96D694A42918EF6300F307A4 = {
 			isa = PBXGroup;
 			children = (
+				966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */,
 				96D694AF2918EF6400F307A4 /* Spotify-Front */,
 				96D694C62918EF6800F307A4 /* Spotify-FrontTests */,
 				96D694D02918EF6800F307A4 /* Spotify-FrontUITests */,
@@ -367,7 +376,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966CF0CD292236B100413486 /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				96D694BD2918EF6700F307A4 /* LaunchScreen.storyboard in Resources */,
+				966CF0CF29223A7E00413486 /* Inter-Bold.ttf in Resources */,
 				96D694BA2918EF6700F307A4 /* Assets.xcassets in Resources */,
 				966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */,
 				966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */,
@@ -512,6 +523,7 @@
 				966CF0C02922024400413486 /* MusicMenuViewController.swift in Sources */,
 				966CF0BE2922013B00413486 /* MusicPlayerViewController.swift in Sources */,
 				96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */,
+				966CF0CB292223C900413486 /* SongTableViewCell.swift in Sources */,
 				966CF0BA291F6F8200413486 /* Data.swift in Sources */,
 				966CF0B6291E72AF00413486 /* SearchViewController.swift in Sources */,
 				966CF0952919545A00413486 /* Util.swift in Sources */,

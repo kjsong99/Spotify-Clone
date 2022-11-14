@@ -11,12 +11,12 @@ import SnapKit
 class SearchViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
-        view.insetsLayoutMarginsFromSafeArea = true
         setLayout()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         self.hideKeyboardWhenTappedAround()
         setTableView()
         

@@ -11,10 +11,13 @@ import UIKit
 var width : CGFloat = UIScreen.main.bounds.width
 var height : CGFloat = UIScreen.main.bounds.height
 
+var isPlayingViewVisible = false
+
 let playingView = {
     let view = nowPlayingView()
     view.backgroundColor = hexStringToUIColor(hex: "#232323")
     view.configure(music: song)
+    view.isHidden = true
     return view
     
 }()

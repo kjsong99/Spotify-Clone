@@ -4,7 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Inter-Bold.ttf</string>
 		<string>Circular-Std-Book.ttf</string>
+		<string>Inter-VariableFont_slnt,wght.ttf</string>
 		<string>CircularStd-Bold.ttf</string>
 		<string>Circular Std Font.otf</string>
 	</array>

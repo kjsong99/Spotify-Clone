@@ -175,11 +175,20 @@ class ViewController: UIViewController{
     let settingButton : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "setting"), for: .normal)
+        button.addTarget(self, action: #selector(makePlayingViewHidden), for: .touchDown)
         return button
     }()
     
     @objc func makePlayingViewHidden(){
-        playingView.isHidden = true
+        if isPlayingViewVisible {
+            playingView.isHidden = true
+            isPlayingViewVisible = false
+
+        }else{
+            playingView.isHidden = false
+            isPlayingViewVisible = true
+
+        }
     }
     
     // MARK: - Gradient

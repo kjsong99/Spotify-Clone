@@ -20,3 +20,20 @@ var histories = [Search(name: "Elzhi", imageName: "Search 1", category: .artist,
                  Search(name: "2000", imageName: "Search 5", category: .album, singer: "Joey Bada$$"),
                  Search(name: "Higher (feat. Nipsey Hussle & Joey Bada$$", imageName: "Search 6", category: .song, singer: "DJ Khaled")
 ]
+
+let songs = [
+    Music(name: "Can’t Knock The Hustle", singer: "JAY-Z, Mary J. Blige", length: 20, imageName: "Image 3"),
+    Music(name: "Politics As Usual", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Brooklyn’s Finest", singer: "JAY-Z, The Notorious B.I.G", length: 20, imageName: "Image 3"),
+    Music(name: "Dead Presidents II", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Feelin' It", singer: "JAY-Z, Mecca", length: 20, imageName: "Image 3"),
+    Music(name: "D'Evils", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "22 Two's", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Can I Live", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Ain't No Nigga" , singer: "JAY-Z, Foxy Brown", length: 20, imageName: "Image 3"),
+    Music(name: "Friend or Foe", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Coming of Age", singer: "JAY-Z, Memphis Bleek", length: 20, imageName: "Image 3"),
+    Music(name:     "Cashmere Thoughts", singer: "JAY-Z", length: 20, imageName: "Image 3"),
+    Music(name: "Bring It On" , singer: "JAY-Z, Big Jaz, Sauce Money", length: 20, imageName: "Image 3"),
+    Music(name: "Regrets", singer: "JAY-Z", length: 20, imageName: "Image 3")
+]
