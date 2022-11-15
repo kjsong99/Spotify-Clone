@@ -223,30 +223,30 @@ extension UITextField {
     }
 }
 
-//extension UINavigationController{
-//    func pushViewControllerFromLeft(viewControlller : UIViewController){
-//        let transition = CATransition()
-//        transition.duration = 0.1
-//        transition.type = .moveIn
-//        transition.subtype = .fromRight
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
-//        view.window?.layer.add(transition, forKey: kCATransition)
-//        pushViewController(viewControlller, animated: false)
-//        self.setNavigationBarHidden(false, animated: false)
-//        
-//    }
-//    
-//    func popViewControllerToLeft(){
-//        let transition = CATransition()
-//        transition.duration = 0.1
-//        transition.type = .moveIn
-//        transition.subtype = .fromLeft
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-//        
-//        view.window?.layer.add(transition, forKey: kCATransition)
-//        
-//        popViewController(animated: false)
-//        self.setNavigationBarHidden(true, animated: false)
-//        
-//    }
-//}
+extension UINavigationController{
+    func pushViewControllerFromLeft(viewControlller : UIViewController){
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = .moveIn
+        transition.subtype = .fromRight
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        view.window?.layer.add(transition, forKey: kCATransition)
+        pushViewController(viewControlller, animated: false)
+        self.setNavigationBarHidden(false, animated: false)
+        
+    }
+    
+    func popViewControllerToLeft(){
+        let transition = CATransition()
+        transition.duration = 0.1
+        transition.type = .moveIn
+        transition.subtype = .fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        
+        view.window?.layer.add(transition, forKey: kCATransition)
+        
+        popViewController(animated: false)
+        self.setNavigationBarHidden(true, animated: false)
+        
+    }
+}

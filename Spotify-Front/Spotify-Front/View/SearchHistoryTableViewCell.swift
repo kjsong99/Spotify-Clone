@@ -126,6 +126,8 @@ class SearchHistoryTableViewCell: UITableViewCell {
             infoLabel.text = search.category.rawValue + " • " + search.singer!
         case .album:
             infoLabel.text = search.category.rawValue + " • " + search.singer!
+        case .playlist:
+            infoLabel.text = "Playlist"
         }
         
         

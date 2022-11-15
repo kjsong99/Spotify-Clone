@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Episode : Codable{
-    let name : String
-    let imageName : String
-    let content : String
-    let day : String
-    let length : String
+struct Episode{
+    var name : String
+    var imageName : String
+    var content : String
+    var day : String
+    var length : String
 }

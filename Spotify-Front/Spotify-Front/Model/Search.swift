@@ -11,8 +11,10 @@ enum Category : String, Codable{
     case artist = "Artist"
     case song = "Song"
     case album = "Album"
+    case playlist = "Playlist"
 }
-struct Search : Codable{
+
+struct Search{
     let name : String
     let imageName : String
     let category : Category

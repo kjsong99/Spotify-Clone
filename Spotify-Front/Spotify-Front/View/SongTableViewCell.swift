@@ -30,7 +30,7 @@ class SongTableViewCell: UITableViewCell {
     
     func configure(music : Music){
         nameLabel.text = music.name
-        artistLabel.text = music.singer
+        artistLabel.text = music.artist.name
     }
     
     func setLayout(){

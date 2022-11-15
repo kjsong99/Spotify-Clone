@@ -13,7 +13,6 @@ class AlbumListViewController: UIViewController {
     
 
     let gradient = CAGradientLayer()
-    
     override func viewDidLoad() {
         setTableView()
         setLayout()
@@ -35,13 +34,15 @@ class AlbumListViewController: UIViewController {
     
     let imageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "Search 3")
+        image.image = UIImage(named: album.imageName)
+//        image.image = UIImage(named: "Search 3")
         return image
     }()
     
     let nameLabel = {
         let label = UILabel()
-        label.text = "Reasonable Doubt"
+        label.text = album.name
+//        label.text = "Reasonable Doubt"
         label.font = UIFont(name: "CircularStd-Bold", size: 24)
         label.textColor = .white
         label.clipsToBounds = true
@@ -50,13 +51,15 @@ class AlbumListViewController: UIViewController {
     
     let artistImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "jayz")
+        image.image = UIImage(named: album.artist.imageName)
+//        image.image = UIImage(named: "jayz")
         return image
     }()
     
     let artistNameLabel = {
         let label = UILabel()
-        label.text = "JAY-Z"
+//        label.text = "JAY-Z"
+        label.text = album.artist.name
         label.font = UIFont(name: "Inter-Bold", size: 13)
         label.textColor = .white
         label.clipsToBounds = true
@@ -258,12 +261,16 @@ class AlbumListViewController: UIViewController {
         
     }
     
+    func configure(album : Album){
+        //여기서 뷰 세팅
+    }
+    
     
 }
 
 extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return album.songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -271,7 +278,7 @@ extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
             return SongTableViewCell()
         }
         
-        cell.configure(music: songs[indexPath.row])
+        cell.configure(music: album.songs[indexPath.row])
         
         return cell
     }
