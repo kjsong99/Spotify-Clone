@@ -33,4 +33,4 @@ let album = Album(name: "Reasonable Doubt", artist: Artist(name: "JAY-Z", imageN
                           Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
                           Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
                           Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30)],
-                  imageName: "Search 3")
+                  imageName: "test")

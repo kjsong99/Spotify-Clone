@@ -175,6 +175,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
        
         
         let vc = AlbumListViewController()
+        vc.configure(album: album)
         show(vc, sender: self)
 //        self.navigationController?.pushViewControllerFromLeft(viewControlller: vc)
     }

@@ -34,7 +34,8 @@ class SongTableViewCell: UITableViewCell {
     }
     
     func setLayout(){
-        self.backgroundColor = hexStringToUIColor(hex: "#121212")
+//        self.backgroundColor = hexStringToUIColor(hex: "#121212")
+        self.backgroundColor = .clear
         contentView.addSubview(nameLabel)
         contentView.addSubview(artistLabel)
         contentView.addSubview(menuBtn)
