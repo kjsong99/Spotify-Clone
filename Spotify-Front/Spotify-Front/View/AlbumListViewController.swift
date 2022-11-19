@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import UIImageColors
+import Moya
 
 class AlbumListViewController: UIViewController {
     var songs = [Music]()
@@ -15,7 +16,7 @@ class AlbumListViewController: UIViewController {
     override func viewDidLoad() {
         setTableView()
         setLayout()
-//        setGradient()
+        //        setGradient()
     }
     
     
@@ -27,19 +28,19 @@ class AlbumListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        setGradient()
+        //        setGradient()
         updateTableView()
     }
     
     let imageView = {
         let image = UIImageView()
-//        image.image = UIImage(named: "Search 3")
+        //        image.image = UIImage(named: "Search 3")
         return image
     }()
     
     let nameLabel = {
         let label = UILabel()
-//        label.text = "Reasonable Doubt"
+        //        label.text = "Reasonable Doubt"
         label.font = UIFont(name: "CircularStd-Bold", size: 24)
         label.textColor = .white
         label.clipsToBounds = true
@@ -48,17 +49,17 @@ class AlbumListViewController: UIViewController {
     
     let artistImageView = {
         let image = UIImageView()
-//        image.image = UIImage(named: "jayz")
+        //        image.image = UIImage(named: "jayz")
         return image
     }()
     
     let artistNameLabel = {
         let label = UILabel()
-//        label.text = "JAY-Z"
+        //        label.text = "JAY-Z"
         label.font = UIFont(name: "Inter-Bold", size: 13)
         label.textColor = .white
         label.clipsToBounds = true
-
+        
         return label
     }()
     
@@ -68,7 +69,7 @@ class AlbumListViewController: UIViewController {
         label.font = UIFont(name: "CircularStd-Book", size: 13)
         label.textColor = hexStringToUIColor(hex: "#BABBBA")
         label.clipsToBounds = true
-
+        
         return label
     }()
     
@@ -111,7 +112,7 @@ class AlbumListViewController: UIViewController {
         let tableView = UITableView()
         
         tableView.backgroundColor = hexStringToUIColor(hex: "#121212").withAlphaComponent(0.8)
-//        tableView.backgroundColor = .clear
+        //        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
         return tableView
@@ -123,9 +124,9 @@ class AlbumListViewController: UIViewController {
         let colors = [color,
                       UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 1).cgColor
         ]
-//        view.backgroundColor = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1)
-//        view.backgroundColor = UIColor(cgColor: colors[0])
-      print("set graident")
+        //        view.backgroundColor = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1)
+        //        view.backgroundColor = UIColor(cgColor: colors[0])
+        print("set graident")
         print(colors)
         
         gradient.colors = colors
@@ -260,27 +261,48 @@ class AlbumListViewController: UIViewController {
     }
     
     func getColors(image : UIImage){
-//        var result = [CGColor]()
+        //        var result = [CGColor]()
         image.getColors{ color in
-//            result.append((color?.primary.withAlphaComponent(0.5).cgColor)!)
-//            result.append((color?.secondary.withAlphaComponent(0.9).cgColor)!)
+            //            result.append((color?.primary.withAlphaComponent(0.5).cgColor)!)
+            //            result.append((color?.secondary.withAlphaComponent(0.9).cgColor)!)
             self.setGradient(color:(color?.secondary.withAlphaComponent(0.8).cgColor)!)
         }
     }
-    
-    func configure(album : Album){
+    //completion: @escaping (Result<Album, Error>) -> Void
+    func configure(){
         //여기서 뷰 세팅
-        songs = album.songs
-        let image = UIImage(named: album.imageName)
-        songTableView.reloadData()
-
-        getColors(image: image!)
+        let albumId = 1
+        AlbumService.shared.requestAlbum(albumId: albumId){ [weak self] result in
+            switch result {
+            case let .success(response):
+//                guard let data = success.data else { return }
+                self?.nameLabel.text = response.name
+                self?.songs = response.musics
+//                let image = UIImage(named: album.imageName)
+                self?.songTableView.reloadData()
         
-       // print(album.imageName)]//
-        imageView.image = image
-        nameLabel.text = album.name
-        artistNameLabel.text = album.artist.name
-        artistImageView.image = UIImage(named: album.artist.imageName)
+//                getColors(image: image!)
+        
+               // print(album.imageName)]//
+//                imageView.image = image
+//                nameLabel.text = album.name
+                self?.artistNameLabel.text = response.artist.name
+//                artistImageView.image = UIImage(named: album.artist.imageName)
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+//                songs = album.songs
+//                let image = UIImage(named: album.imageName)
+//                songTableView.reloadData()
+//
+//                getColors(image: image!)
+//
+//               // print(album.imageName)]//
+//                imageView.image = image
+//                nameLabel.text = album.name
+//                artistNameLabel.text = album.artist.name
+//                artistImageView.image = UIImage(named: album.artist.imageName)
         
     }
     
@@ -289,7 +311,8 @@ class AlbumListViewController: UIViewController {
 
 extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+
+        return self.songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -297,7 +320,7 @@ extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
             return SongTableViewCell()
         }
         
-        cell.configure(music: songs[indexPath.row])
+        cell.configure(music: self.songs[indexPath.row])
         
         return cell
     }

@@ -26,7 +26,11 @@ public class AlbumServiceImpl implements AlbumService {
         return albumRepository.findByArtistId(artistId);
     }
 
-    //    @Transactional
+    @Override
+    public Album getAlbumById(final Long albumId) throws Exception {
+        return albumRepository.findById(albumId).orElseThrow(() -> new Exception("Album doesn't exist"));
+    }
+//    @Transactional
 //    public List<Album> get(){
 //        return albumRepository.findAll();
 //    }

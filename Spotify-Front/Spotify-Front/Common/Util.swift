@@ -16,7 +16,7 @@ var isPlayingViewVisible = false
 let playingView = {
     let view = nowPlayingView()
     view.backgroundColor = hexStringToUIColor(hex: "#232323")
-    view.configure(music: song)
+//    view.configure(music: Music(id: 1, name: "test", artist: Artist(id: 1, name: "test", imagePath: "test", albums: [])))
     view.isHidden = true
     return view
     

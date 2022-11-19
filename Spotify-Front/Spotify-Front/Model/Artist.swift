@@ -7,7 +7,21 @@
 
 import Foundation
 
-struct Artist{
+struct Artist {
+    var id : Int
     var name : String
-    var imageName : String
+    var imagePath : String
+    
+    enum CodingKeys : String, CodingKey{
+        case id, name, imagePath
+    }
+}
+
+extension Artist : Decodable{
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        imagePath = try container.decode(String.self, forKey: .imagePath)
+    }
 }

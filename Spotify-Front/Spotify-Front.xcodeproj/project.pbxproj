@@ -34,6 +34,9 @@
 		966CF0CF29223A7E00413486 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0CE29223A7E00413486 /* Inter-Bold.ttf */; };
 		966CF0D52923BDEE00413486 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D42923BDEE00413486 /* Artist.swift */; };
 		966CF0D72923BE0000413486 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D62923BE0000413486 /* Album.swift */; };
+		966CF0D9292717AE00413486 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D8292717AE00413486 /* TestViewController.swift */; };
+		966CF0DB2928B87400413486 /* AlbumTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0DA2928B87400413486 /* AlbumTarget.swift */; };
+		966CF0DF2928D1DA00413486 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0DE2928D1DA00413486 /* AlbumService.swift */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -94,6 +97,9 @@
 		966CF0CE29223A7E00413486 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		966CF0D42923BDEE00413486 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		966CF0D62923BE0000413486 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		966CF0D8292717AE00413486 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		966CF0DA2928B87400413486 /* AlbumTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTarget.swift; sourceTree = "<group>"; };
+		966CF0DE2928D1DA00413486 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		966CF0932919544F00413486 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				966CF0DD2928D1B500413486 /* API */,
+				966CF0DC2928D1AE00413486 /* Target */,
 				966CF0942919545A00413486 /* Util.swift */,
 				966CF0B9291F6F8200413486 /* Data.swift */,
 				966CF0C629220EA500413486 /* WaveForm.swift */,
@@ -174,6 +182,7 @@
 				966CF0BF2922024400413486 /* MusicMenuViewController.swift */,
 				966CF0C12922025B00413486 /* AlbumListViewController.swift */,
 				966CF0CA292223C900413486 /* SongTableViewCell.swift */,
+				966CF0D8292717AE00413486 /* TestViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +198,22 @@
 				966CF0D62923BE0000413486 /* Album.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		966CF0DC2928D1AE00413486 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				966CF0DA2928B87400413486 /* AlbumTarget.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		966CF0DD2928D1B500413486 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				966CF0DE2928D1DA00413486 /* AlbumService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		96D694A42918EF6300F307A4 = {
@@ -519,6 +544,7 @@
 			files = (
 				966CF0B8291F6D5500413486 /* Search.swift in Sources */,
 				96D694B52918EF6400F307A4 /* ViewController.swift in Sources */,
+				966CF0D9292717AE00413486 /* TestViewController.swift in Sources */,
 				966CF0C22922025B00413486 /* AlbumListViewController.swift in Sources */,
 				966CF0C729220EA500413486 /* WaveForm.swift in Sources */,
 				966CF0B0291CD22F00413486 /* EpisodeCollectionViewCell.swift in Sources */,
@@ -529,6 +555,7 @@
 				96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */,
 				966CF0C02922024400413486 /* MusicMenuViewController.swift in Sources */,
 				966CF0BE2922013B00413486 /* MusicPlayerViewController.swift in Sources */,
+				966CF0DF2928D1DA00413486 /* AlbumService.swift in Sources */,
 				96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */,
 				966CF0CB292223C900413486 /* SongTableViewCell.swift in Sources */,
 				966CF0BA291F6F8200413486 /* Data.swift in Sources */,
@@ -538,6 +565,7 @@
 				966CF0AE291CD1BC00413486 /* Episode.swift in Sources */,
 				966CF0D72923BE0000413486 /* Album.swift in Sources */,
 				966CF0A2291A8E2F00413486 /* Playlist.swift in Sources */,
+				966CF0DB2928B87400413486 /* AlbumTarget.swift in Sources */,
 				966CF0B4291E378600413486 /* Music.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

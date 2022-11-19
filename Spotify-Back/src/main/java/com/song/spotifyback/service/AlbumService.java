@@ -9,4 +9,6 @@ public interface AlbumService {
 //    public List<Album> getAllAlbumsByMusic();
     public List<Album> getAllAlbumsByArtistId(final Long artistId);
 
+    public Album getAlbumById(final Long albumId) throws Exception;
+
 }

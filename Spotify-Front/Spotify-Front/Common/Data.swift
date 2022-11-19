@@ -11,7 +11,7 @@ let playlists = [Playlist(name: "It's Only Me", imageName: "Image 1"), Playlist(
 
 let episodes = [Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min"), Episode(name: "211 - How to give and receive feedback - with Eric Moore", imageName: "Image 8", content: "Criticism is easily given, but rarely appreciated. At some point", day: "Fri", length: "53 min"), Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min"), Episode(name: "Things You Thought You Knew - What Is Exit Velocity?", imageName: "Image 7", content: "What is exit velocity? On this episode, Neil deGrasse Tyson asks", day: "Wed", length: "1hr, 5min")]
 
-let song = Music(name: "Introverted", artist: Artist(name: "", imageName: ""), imageName: "Image 9", length: 125)
+//let song = Music(name: "Introverted", artist: Artist(name: "", imageName: ""), imageName: "Image 9", length: 125)
 
 var histories = [Search(name: "Elzhi", imageName: "Search 1", category: .artist, singer: nil),
                  Search(name: "Lil Baby", imageName: "Search 2", category: .artist, singer: nil),
@@ -20,17 +20,17 @@ var histories = [Search(name: "Elzhi", imageName: "Search 1", category: .artist,
                  Search(name: "2000", imageName: "Search 5", category: .album, singer: "Joey Bada$$"),
                  Search(name: "Higher (feat. Nipsey Hussle & Joey Bada$$", imageName: "Search 6", category: .song, singer: "DJ Khaled")
 ]
-
-let album = Album(name: "Reasonable Doubt", artist: Artist(name: "JAY-Z", imageName: "jayz"),
-                  songs: [Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
-                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30)],
-                  imageName: "test")
+//
+//let album = Album(name: "Reasonable Doubt", artist: Artist(name: "JAY-Z", imageName: "jayz"),
+//                  songs: [Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),
+//                          Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30),Music(name: "abcdefg", artist: Artist(name: "JAY-Z", imageName: "jayz"), imageName: "jayz", length: 30)],
+//                  imageName: "test")

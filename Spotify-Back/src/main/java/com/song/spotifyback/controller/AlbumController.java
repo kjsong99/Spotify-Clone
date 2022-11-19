@@ -4,11 +4,10 @@ import com.song.spotifyback.entity.Album;
 import com.song.spotifyback.service.impl.AlbumServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +28,12 @@ public class AlbumController {
     @ResponseBody
     public ResponseEntity<List<Album>> getAllAlbumsByArtist(@PathVariable Long artistId){
         return ResponseEntity.ok(this.albumService.getAllAlbumsByArtistId(artistId));
+    }
+    @RequestMapping()
+    @ResponseBody
+    public ResponseEntity<Album> getAlbumById(@RequestParam Long albumId) throws Exception{
+        return ResponseEntity.ok(this.albumService.getAlbumById(albumId));
+
     }
 
 }

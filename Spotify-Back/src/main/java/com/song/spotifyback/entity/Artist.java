@@ -1,9 +1,7 @@
 package com.song.spotifyback.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 import org.springframework.context.annotation.Primary;
@@ -20,6 +18,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @Table(name = "Artist")
+@Data
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Artist {
@@ -35,7 +34,7 @@ public class Artist {
     @Column(length = 100, nullable = false, name = "artist_imagePath")
     private  String imagePath;
 
-    @JsonSerialize(contentAs = Album.class)
+    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private List<Album> albums = new ArrayList<Album>();
 }

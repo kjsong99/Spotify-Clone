@@ -172,11 +172,11 @@ class nowPlayingView: UIView {
     }
     
     func configure(music : Music){
-        nameLabel.text = music.name
-        singerLabel.text = music.artist.name
-        albumImageView.image = UIImage(named: music.imageName)
-        interval = 1.0 / Float(music.length)
-        max = Float(music.length)
+//        nameLabel.text = music.name
+//        singerLabel.text = music.artist.name
+//        albumImageView.image = UIImage(named: music.imageName)
+//        interval = 1.0 / Float(music.length)
+//        max = Float(music.length)
 
     }
     

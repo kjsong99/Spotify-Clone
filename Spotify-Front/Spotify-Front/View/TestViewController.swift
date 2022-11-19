@@ -6,24 +6,28 @@
 //
 
 import UIKit
+import SnapKit
+import Kingfisher
 
 class TestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setLayout()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    let imageView = {
+        let view = UIImageView()
+        return view
+    }()
+    
+    func setLayout(){
+        view.addSubview(imageView)
+        imageView.snp.makeConstraints{ view in
+            view.left.right.top.bottom.equalToSuperview()
+        }
     }
-    */
+    
 
 }

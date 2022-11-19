@@ -9,7 +9,8 @@ target 'Spotify-Front' do
   pod 'MSPeekCollectionViewDelegateImplementation'
   pod 'SnapKit'
   pod 'UIImageColors'
-  
+  pod 'Moya'
+  pod 'Kingfisher' 
   target 'Spotify-FrontTests' do
     inherit! :search_paths
     # Pods for testing
