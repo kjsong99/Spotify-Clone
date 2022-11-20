@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Kingfisher
+import RealmSwift
 
 var width : CGFloat = UIScreen.main.bounds.width
 var height : CGFloat = UIScreen.main.bounds.height
@@ -77,4 +79,29 @@ extension UIViewController{
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+}
+
+func downloadImage(`with` urlString : String, completion: @escaping (Result<UIImage, Error>) -> Void){
+    guard let url = URL.init(string: urlString) else {
+        return
+    }
+    let resource = ImageResource(downloadURL: url)
+
+    KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+        switch result {
+        case .success(let value):
+            completion(.success(value.image))
+        case .failure(let error):
+            completion(.failure(error))
+        }
+    }
+}
+
+
+public protocol Persistable {
+    associatedtype ManagedObject : RealmSwift.Object
+
+    init(managedObject : ManagedObject)
+
+    func managedObject() -> ManagedObject
 }

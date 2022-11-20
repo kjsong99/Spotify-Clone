@@ -10,7 +10,9 @@ target 'Spotify-Front' do
   pod 'SnapKit'
   pod 'UIImageColors'
   pod 'Moya'
-  pod 'Kingfisher' 
+  pod 'Kingfisher'
+  pod 'Realm'
+  pod 'RealmSwift' 
   target 'Spotify-FrontTests' do
     inherit! :search_paths
     # Pods for testing

@@ -6,20 +6,41 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Music{
+struct Music : Codable{
     var id : Int
     var name : String
-    enum CodingKeys : String, CodingKey{
-        case id, name
-    }
+    var imagePath : String
+    var artists : [ArtistValue]
+    var features : [ArtistValue]?
+
 }
 
-extension Music : Decodable{
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-    }
-}
+//class MusicObject : Object {
+//    @objc dynamic var id : Int = 0
+//    @objc dynamic var name : String = ""
+//    @objc dynamic var imagePath : String = ""
+//}
+//
+//extension Music : Persistable{
+//    typealias ManagedObject = MusicObject
+//    
+//    init(managedObject: MusicObject) {
+//        self.id = managedObject.id
+//        self.name = managedObject.name
+//        self.imagePath = managedObject.imagePath
+//        self.artists = []
+//        self.features = []
+//    }
+//    
+//    func managedObject() -> MusicObject {
+//        var object = MusicObject()
+//        object.id = self.id
+//        object.name = self.name
+//        object.imagePath = self.imagePath
+//        return object
+//    }
+//}
+//
+

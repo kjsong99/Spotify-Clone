@@ -27,6 +27,7 @@ func requestAlbum(albumId: Int, completion: @escaping (Result<Album, Error>) -> 
               
               do {
                   let results = try AlbumService.decoder.decode(Album.self, from: response.data)
+//                  print(try? response.mapJSON(failsOnEmptyData: false))
                   completion(.success(results))
               } catch {
                   completion(.failure(error))

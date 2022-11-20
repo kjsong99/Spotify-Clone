@@ -115,19 +115,23 @@ class SearchHistoryTableViewCell: UITableViewCell {
     }()
     
     func configure(search: Search){
-        image.image = UIImage(named: search.imageName)
+//        image.image = UIImage(named: search.imageName)
         nameLabel.text = search.name
         
         switch search.category {
             
         case .artist:
             infoLabel.text = search.category.rawValue
-        case .song:
-            infoLabel.text = search.category.rawValue + " • " + search.singer!
+        case .music:
+            infoLabel.text = search.category.rawValue
+//            + " • " + search.singer!
         case .album:
-            infoLabel.text = search.category.rawValue + " • " + search.singer!
+            infoLabel.text = search.category.rawValue
+//            " • " + search.singer!
         case .playlist:
             infoLabel.text = "Playlist"
+        case .none:
+            infoLabel.text = "none"
         }
         
         

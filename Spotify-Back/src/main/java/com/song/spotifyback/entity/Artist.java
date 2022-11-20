@@ -37,4 +37,12 @@ public class Artist {
     @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private List<Album> albums = new ArrayList<Album>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "artist")
+    private List<MusicArtist> musicArtists = new ArrayList<MusicArtist>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "artist")
+    private List<MusicFeatures> musicFeatures = new ArrayList<MusicFeatures>();
 }

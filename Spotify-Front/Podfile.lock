@@ -6,6 +6,11 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - MSPeekCollectionViewDelegateImplementation (3.2.0)
+  - Realm (10.28.4):
+    - Realm/Headers (= 10.28.4)
+  - Realm/Headers (10.28.4)
+  - RealmSwift (10.28.4):
+    - Realm (= 10.28.4)
   - SnapKit (5.6.0)
   - UIImageColors (2.1.0)
 
@@ -13,6 +18,8 @@ DEPENDENCIES:
   - Kingfisher
   - Moya
   - MSPeekCollectionViewDelegateImplementation
+  - Realm
+  - RealmSwift
   - SnapKit
   - UIImageColors
 
@@ -22,6 +29,8 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - MSPeekCollectionViewDelegateImplementation
+    - Realm
+    - RealmSwift
     - SnapKit
     - UIImageColors
 
@@ -30,9 +39,11 @@ SPEC CHECKSUMS:
   Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   MSPeekCollectionViewDelegateImplementation: be35a217bd302976a9e4476151be992c1f150127
+  Realm: 8ab5176275b4123e84383b33385d47f09507acac
+  RealmSwift: 0851105ca8c6d5722678c98e4d4e53637d1704c8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 0b7a0ec6af271944e19c6bf4d545c344996496c2
+PODFILE CHECKSUM: 00e7c5e28f263afdf1b96d12677964742e8bfa78
 
 COCOAPODS: 1.11.3

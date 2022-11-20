@@ -50,6 +50,7 @@ class AlbumListViewController: UIViewController {
     let artistImageView = {
         let image = UIImageView()
         //        image.image = UIImage(named: "jayz")
+       
         return image
     }()
     
@@ -257,7 +258,6 @@ class AlbumListViewController: UIViewController {
             }
             
         }
-        
     }
     
     func getColors(image : UIImage){
@@ -275,34 +275,40 @@ class AlbumListViewController: UIViewController {
         AlbumService.shared.requestAlbum(albumId: albumId){ [weak self] result in
             switch result {
             case let .success(response):
-//                guard let data = success.data else { return }
+                //                guard let data = success.data else { return }
                 self?.nameLabel.text = response.name
                 self?.songs = response.musics
-//                let image = UIImage(named: album.imageName)
+                //                let image = UIImage(named: album.imageName)
                 self?.songTableView.reloadData()
-        
-//                getColors(image: image!)
-        
-               // print(album.imageName)]//
-//                imageView.image = image
-//                nameLabel.text = album.name
+                downloadImage(with: "http://localhost:8080/" + response.imagePath) { result in
+                    switch result {
+                    case let .success(result):
+                        self?.getColors(image: result)
+                        self?.imageView.image = result
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                
                 self?.artistNameLabel.text = response.artist.name
-//                artistImageView.image = UIImage(named: album.artist.imageName)
+                self?.artistImageView.kf.setImage(with: URL(string: "http://localhost:8080/" + response.artist.imagePath)!)
+                self?.artistImageView.getCircleImage()
             case let .failure(error):
                 print(error.localizedDescription)
             }
         }
-//                songs = album.songs
-//                let image = UIImage(named: album.imageName)
-//                songTableView.reloadData()
-//
-//                getColors(image: image!)
-//
-//               // print(album.imageName)]//
-//                imageView.image = image
-//                nameLabel.text = album.name
-//                artistNameLabel.text = album.artist.name
-//                artistImageView.image = UIImage(named: album.artist.imageName)
+        //                songs = album.songs
+        //                let image = UIImage(named: album.imageName)
+        //                songTableView.reloadData()
+        //
+        //                getColors(image: image!)
+        //
+        //               // print(album.imageName)]//
+        //                imageView.image = image
+        //                nameLabel.text = album.name
+        //                artistNameLabel.text = album.artist.name
+        //                artistImageView.image = UIImage(named: album.artist.imageName)
         
     }
     
@@ -311,7 +317,7 @@ class AlbumListViewController: UIViewController {
 
 extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return self.songs.count
     }
     
@@ -330,4 +336,14 @@ extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension UIImageView{
+    func getCircleImage(){
+        self.layer.cornerRadius = self.frame.height/2
+        self.layer.borderWidth = 1
+        self.clipsToBounds = true
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.contentMode = .scaleToFill
+    }
 }

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-
-struct Album {
+import RealmSwift
+struct Album : Codable{
     var id : Int
     var name : String
     var date : Date
@@ -15,21 +15,38 @@ struct Album {
     var musics : [Music]
     var artist : Artist
     
-    enum CodingKeys : String, CodingKey{
-        case id, name, date, imagePath, musics, artist
-    }
 }
 
-extension Album : Decodable{
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        date = try container.decode(Date.self, forKey: .date)
-        imagePath = try container.decode(String.self, forKey: .imagePath)
-        musics = try container.decode([Music].self, forKey: .musics)
-        artist = try container.decode(Artist.self, forKey: .artist)
 
-        
-    }
-}
+//class AlbumObject : Object {
+//    @objc dynamic var id : Int = 0
+//    @objc dynamic var name : String = ""
+//    @objc dynamic var imagePath : String = ""
+//}
+//
+//extension Album : Persistable{
+//    init(managedObject: AlbumObject) {
+//        self.id = managedObject.id
+//        self.name = managedObject.name
+//        self.imagePath = managedObject.imagePath
+//        self.date = Date()
+//        self.musics = []
+//        self.artist = Artist(id: 0, name: "", imagePath: "")
+//
+//    }
+//
+//    func managedObject() -> AlbumObject {
+//        var object = AlbumObject()
+//        object.id = self.id
+//        object.name = self.name
+//        object.imagePath = self.imagePath
+//        return object
+//    }
+//
+//    typealias ManagedObject = AlbumObject
+//
+//
+//}
+//
+//
+//

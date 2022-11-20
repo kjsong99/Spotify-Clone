@@ -92,6 +92,7 @@ class SearchViewController: UIViewController {
     
     // MARK: - UI Variable
     
+
     
     let searchFieldView : UIView = {
         let view = UIView()
@@ -146,7 +147,13 @@ class SearchViewController: UIViewController {
     
     let searchHistoryTableView : UITableView = {
         let tableView = UITableView()
-        
+        tableView.isHidden = false
+        return tableView
+    }()
+    
+    let SearchTableView : UITableView = {
+        let tableView = UITableView()
+        tableView.isHidden = true
         return tableView
     }()
     
@@ -156,14 +163,20 @@ class SearchViewController: UIViewController {
     @objc func textDidChanged(_sender: Any?){
         if self.searchField.text?.count != 0 {
             initBtn.isHidden = false
+            self.searchHistoryTableView.isHidden = true
+            self.SearchTableView.isHidden = false
         }else{
             initBtn.isHidden = true
+            self.searchHistoryTableView.isHidden = false
+            self.SearchTableView.isHidden = true
         }
     }
     
     @objc func initText(){
         self.searchField.text = ""
         self.initBtn.isHidden = true
+        self.searchHistoryTableView.isHidden = false
+        self.SearchTableView.isHidden = true
     }
     
 }
@@ -172,8 +185,6 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        
         let vc = AlbumListViewController()
         vc.configure()
         show(vc, sender: self)
@@ -183,7 +194,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return histories.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -192,7 +203,8 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             return SearchHistoryTableViewCell()
         }
         cell.selectionStyle = .none
-        cell.configure(search: histories[indexPath.row])
+        //cell configure
+//        cell.configure(search: histories[indexPath.row])
         cell.deleteBtn.tag = indexPath.row
         cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
         
@@ -200,7 +212,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     @objc func handleRegister(_ sender: UIButton){
-        histories.remove(at:sender.tag)
+//        histories.remove(at:sender.tag)
         searchHistoryTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .none)
         searchHistoryTableView.reloadData()
     }

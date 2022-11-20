@@ -6,17 +6,19 @@
 //
 
 import Foundation
-
-enum Category : String, Codable{
+import Realm
+import RealmSwift
+enum Category : String, Codable, PersistableEnum{
+    case none = "None"
     case artist = "Artist"
-    case song = "Song"
+    case music = "Music"
     case album = "Album"
     case playlist = "Playlist"
 }
 
-struct Search{
-    let name : String
-    let imageName : String
-    let category : Category
-    let singer : String?
+class Search : Object{
+    @Persisted(primaryKey: true) var id : Int
+    @Persisted var name : String = ""
+    @Persisted var imagePath : String = ""
+    @Persisted var category : Category = .none
 }
