@@ -39,6 +39,7 @@
 		966CF0DF2928D1DA00413486 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0DE2928D1DA00413486 /* AlbumService.swift */; };
 		969BFBE3292A10EC008F5342 /* SearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE2292A10EC008F5342 /* SearchTarget.swift */; };
 		969BFBE5292A13E7008F5342 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */; };
+		969BFBE7292A7FB9008F5342 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE6292A7FB9008F5342 /* SearchService.swift */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -104,6 +105,7 @@
 		966CF0DE2928D1DA00413486 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		969BFBE2292A10EC008F5342 /* SearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTarget.swift; sourceTree = "<group>"; };
 		969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		969BFBE6292A7FB9008F5342 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				966CF0DE2928D1DA00413486 /* AlbumService.swift */,
+				969BFBE6292A7FB9008F5342 /* SearchService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				966CF0AC291CCEAE00413486 /* LibraryViewController.swift in Sources */,
 				966CF0D52923BDEE00413486 /* Artist.swift in Sources */,
 				969BFBE3292A10EC008F5342 /* SearchTarget.swift in Sources */,
+				969BFBE7292A7FB9008F5342 /* SearchService.swift in Sources */,
 				969BFBE5292A13E7008F5342 /* SearchTableViewCell.swift in Sources */,
 				966CF0BC291F7BA100413486 /* SearchHistoryTableViewCell.swift in Sources */,
 				966CF0B2291E36A600413486 /* nowPlayingView.swift in Sources */,

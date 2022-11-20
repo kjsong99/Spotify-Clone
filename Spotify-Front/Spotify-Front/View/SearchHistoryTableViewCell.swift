@@ -120,17 +120,17 @@ class SearchHistoryTableViewCell: UITableViewCell {
         
         switch search.category {
             
-        case .artist:
-            infoLabel.text = search.category.rawValue
-        case .music:
-            infoLabel.text = search.category.rawValue
+        case "artist":
+            infoLabel.text = search.category
+        case "music":
+            infoLabel.text = search.category
 //            + " • " + search.singer!
-        case .album:
-            infoLabel.text = search.category.rawValue
+        case "album":
+            infoLabel.text = search.category
 //            " • " + search.singer!
-        case .playlist:
-            infoLabel.text = "Playlist"
-        case .none:
+        case "playlist":
+            infoLabel.text = "laylist"
+        default:
             infoLabel.text = "none"
         }
         

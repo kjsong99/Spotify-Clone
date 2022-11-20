@@ -3,10 +3,7 @@ package com.song.spotifyback.entity;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @ToString
@@ -17,13 +14,25 @@ import javax.persistence.Id;
 @Data
 @JsonSerialize(contentAs = Search.class)
 public class Search {
-    @Id
-    @GeneratedValue
-    private Long id;
+    private Long value_id;
 
     private String name;
 
     private String category;
 
     private String image_path;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+    @Column(name ="id")
+    private Long id;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
+    }
 }

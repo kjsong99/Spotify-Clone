@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class SearchViewController: UIViewController {
+    
+    var searchList : [Search] = [Search]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -29,6 +31,7 @@ class SearchViewController: UIViewController {
         searchFieldView.addSubview(initBtn)
         view.addSubview(cancelBtn)
         view.addSubview(recentLabel)
+        view.addSubview(SearchTableView)
         view.addSubview(searchHistoryTableView)
         
         searchFieldView.snp.makeConstraints{ view in
@@ -81,6 +84,13 @@ class SearchViewController: UIViewController {
             tableView.top.equalTo(recentLabel.snp.bottom).offset(convertHeight(originValue: 19.0))
             tableView.bottom.equalToSuperview()
         }
+        
+        SearchTableView.snp.makeConstraints{ tableView in
+            tableView.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
+            tableView.right.equalToSuperview().offset(-1 * convertWidth(originValue: 14.0))
+            tableView.top.equalTo(recentLabel.snp.bottom).offset(convertHeight(originValue: 19.0))
+            tableView.bottom.equalToSuperview()
+        }
     }
     
     func setTableView(){
@@ -88,6 +98,11 @@ class SearchViewController: UIViewController {
         searchHistoryTableView.dataSource = self
         searchHistoryTableView.delegate = self
         searchHistoryTableView.register(SearchHistoryTableViewCell.self, forCellReuseIdentifier: "searchHistoryCell")
+        
+        SearchTableView.backgroundColor = .black
+        SearchTableView.dataSource = self
+        SearchTableView.delegate = self
+        SearchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
     }
     
     // MARK: - UI Variable
@@ -165,6 +180,16 @@ class SearchViewController: UIViewController {
             initBtn.isHidden = false
             self.searchHistoryTableView.isHidden = true
             self.SearchTableView.isHidden = false
+            SearchService.shared.search(keyword: searchField.text!){ result in
+                switch result {
+                case let .success(result):
+                    self.searchList = result
+                    self.SearchTableView.reloadData()
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+            
         }else{
             initBtn.isHidden = true
             self.searchHistoryTableView.isHidden = false
@@ -194,22 +219,35 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if tableView == searchHistoryTableView{
+            return 0
+
+        }else{
+            return searchList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = searchHistoryTableView.dequeueReusableCell(withIdentifier: "searchHistoryCell", for: indexPath) as? SearchHistoryTableViewCell else {
-            return SearchHistoryTableViewCell()
+        if tableView == searchHistoryTableView {
+            guard let cell = searchHistoryTableView.dequeueReusableCell(withIdentifier: "searchHistoryCell", for: indexPath) as? SearchHistoryTableViewCell else {
+                return SearchHistoryTableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.deleteBtn.tag = indexPath.row
+            cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
+            
+            
+            return cell
+        }else{
+            guard let cell = SearchTableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? SearchTableViewCell else {
+                return SearchTableViewCell()
+            }
+            
+            cell.selectionStyle = . none
+            cell.configure(search: searchList[indexPath.row])
+            return cell
         }
-        cell.selectionStyle = .none
-        //cell configure
-//        cell.configure(search: histories[indexPath.row])
-        cell.deleteBtn.tag = indexPath.row
-        cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
         
-        
-        return cell
     }
     @objc func handleRegister(_ sender: UIButton){
 //        histories.remove(at:sender.tag)

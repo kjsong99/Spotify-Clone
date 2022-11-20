@@ -16,9 +16,9 @@ enum Category : String, Codable, PersistableEnum{
     case playlist = "Playlist"
 }
 
-class Search : Object{
+class Search : Object, Codable{
     @Persisted(primaryKey: true) var id : Int
     @Persisted var name : String = ""
-    @Persisted var imagePath : String = ""
-    @Persisted var category : Category = .none
+    @Persisted var image_path : String = ""
+    @Persisted var category : String = ""
 }

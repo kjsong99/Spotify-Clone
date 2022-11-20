@@ -25,7 +25,6 @@ public class SearchController {
     @ResponseBody
     @RequestMapping()
     public ResponseEntity<List<Search>> searchByKeyword(@RequestParam ("keyword") String keyword){
-        System.out.println(keyword);
         return ResponseEntity.ok(this.searchRepository.findAllBy(keyword));
     }
 }
