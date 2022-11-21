@@ -3,6 +3,7 @@ package com.song.spotifyback.controller;
 import com.song.spotifyback.entity.Album;
 import com.song.spotifyback.entity.Search;
 import com.song.spotifyback.repository.SearchRepository;
+import com.song.spotifyback.service.SearchService;
 import com.song.spotifyback.service.impl.AlbumServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,12 @@ import java.util.List;
 public class SearchController {
 
     @Autowired
-    private final SearchRepository searchRepository;
+    private final SearchService searchService;
 
     @ResponseBody
     @RequestMapping()
     public ResponseEntity<List<Search>> searchByKeyword(@RequestParam ("keyword") String keyword){
-        return ResponseEntity.ok(this.searchRepository.findAllBy(keyword));
+//        searchService.initSequence();
+        return ResponseEntity.ok(this.searchService.search(keyword));
     }
 }

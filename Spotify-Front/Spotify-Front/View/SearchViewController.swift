@@ -7,10 +7,25 @@
 
 import UIKit
 import SnapKit
-
+import RealmSwift
 class SearchViewController: UIViewController {
-    
+    let realm = try! Realm()
     var searchList : [Search] = [Search]()
+    var histories : [Search] = [Search]()
+    override func viewWillAppear(_ bool : Bool){
+        super.viewWillAppear(bool)
+       updateHistory()
+        
+    }
+    
+    func updateHistory(){
+        histories.removeAll()
+        let objects = realm.objects(Search.self)
+        for i in objects{
+            histories.append(i)
+        }
+        searchHistoryTableView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -22,6 +37,8 @@ class SearchViewController: UIViewController {
         
     }
     
+
+    
     func setLayout(){
         
         view.backgroundColor = hexStringToUIColor(hex: "#191919").withAlphaComponent(0.5)
@@ -30,9 +47,14 @@ class SearchViewController: UIViewController {
         searchFieldView.addSubview(searchImage)
         searchFieldView.addSubview(initBtn)
         view.addSubview(cancelBtn)
-        view.addSubview(recentLabel)
-        view.addSubview(SearchTableView)
-        view.addSubview(searchHistoryTableView)
+        
+        view.addSubview(searchHistoryView)
+        view.addSubview(searchView)
+        
+        searchHistoryView.addSubview(recentLabel)
+        searchHistoryView.addSubview(searchHistoryTableView)
+        
+        searchView.addSubview(SearchTableView)
         
         searchFieldView.snp.makeConstraints{ view in
             view.width.equalTo(convertWidth(originValue: 285.0))
@@ -74,32 +96,43 @@ class SearchViewController: UIViewController {
         recentLabel.snp.makeConstraints{ label in
             label.width.equalTo(convertWidth(originValue: 158.0))
             label.height.equalTo(convertHeight(originValue: 17.0))
-            label.top.equalTo(searchFieldView.snp.bottom).offset(convertHeight(originValue: 21.0))
+            label.top.equalToSuperview().offset(convertHeight(originValue: 13.0))
             label.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
         }
-        
+
         searchHistoryTableView.snp.makeConstraints{ tableView in
-            tableView.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
-            tableView.right.equalToSuperview().offset(-1 * convertWidth(originValue: 14.0))
+            tableView.left.equalToSuperview()
+            tableView.right.equalToSuperview()
             tableView.top.equalTo(recentLabel.snp.bottom).offset(convertHeight(originValue: 19.0))
             tableView.bottom.equalToSuperview()
         }
-        
+
         SearchTableView.snp.makeConstraints{ tableView in
-            tableView.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
-            tableView.right.equalToSuperview().offset(-1 * convertWidth(originValue: 14.0))
-            tableView.top.equalTo(recentLabel.snp.bottom).offset(convertHeight(originValue: 19.0))
+            tableView.left.equalToSuperview()
+            tableView.right.equalToSuperview()
+            tableView.top.equalToSuperview()
             tableView.bottom.equalToSuperview()
+        }
+        
+        searchView.snp.makeConstraints{ view in
+            view.width.equalToSuperview()
+            view.bottom.equalToSuperview()
+            view.top.equalTo(searchFieldView.snp.bottom).offset(convertHeight(originValue: 21.0))
+        }
+        
+        searchHistoryView.snp.makeConstraints{ view in
+            view.left.right.bottom.equalToSuperview()
+            view.top.equalTo(searchFieldView.snp.bottom).offset(convertHeight(originValue: 8.0))
         }
     }
     
     func setTableView(){
-        searchHistoryTableView.backgroundColor = .black
+//        searchHistoryTableView.backgroundColor = .black
         searchHistoryTableView.dataSource = self
         searchHistoryTableView.delegate = self
         searchHistoryTableView.register(SearchHistoryTableViewCell.self, forCellReuseIdentifier: "searchHistoryCell")
         
-        SearchTableView.backgroundColor = .black
+//        SearchTableView.backgroundColor = .black
         SearchTableView.dataSource = self
         SearchTableView.delegate = self
         SearchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
@@ -108,6 +141,19 @@ class SearchViewController: UIViewController {
     // MARK: - UI Variable
     
 
+    let searchHistoryView = {
+        let view = UIView()
+        view.backgroundColor = hexStringToUIColor(hex: "#121212")
+        view.isHidden = false
+        return view
+    }()
+    
+    let searchView = {
+        let view = UIView()
+        view.backgroundColor = hexStringToUIColor(hex: "#191F1F")
+        view.isHidden = true
+        return view
+    }()
     
     let searchFieldView : UIView = {
         let view = UIView()
@@ -162,13 +208,15 @@ class SearchViewController: UIViewController {
     
     let searchHistoryTableView : UITableView = {
         let tableView = UITableView()
-        tableView.isHidden = false
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         return tableView
     }()
     
     let SearchTableView : UITableView = {
         let tableView = UITableView()
-        tableView.isHidden = true
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -178,8 +226,8 @@ class SearchViewController: UIViewController {
     @objc func textDidChanged(_sender: Any?){
         if self.searchField.text?.count != 0 {
             initBtn.isHidden = false
-            self.searchHistoryTableView.isHidden = true
-            self.SearchTableView.isHidden = false
+            self.searchHistoryView.isHidden = true
+            self.searchView.isHidden = false
             SearchService.shared.search(keyword: searchField.text!){ result in
                 switch result {
                 case let .success(result):
@@ -192,16 +240,16 @@ class SearchViewController: UIViewController {
             
         }else{
             initBtn.isHidden = true
-            self.searchHistoryTableView.isHidden = false
-            self.SearchTableView.isHidden = true
+            self.searchHistoryView.isHidden = false
+            self.searchView.isHidden = true
         }
     }
     
     @objc func initText(){
         self.searchField.text = ""
         self.initBtn.isHidden = true
-        self.searchHistoryTableView.isHidden = false
-        self.SearchTableView.isHidden = true
+        self.searchHistoryView.isHidden = false
+        self.searchView.isHidden = true
     }
     
 }
@@ -220,7 +268,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == searchHistoryTableView{
-            return 0
+            return histories.count
 
         }else{
             return searchList.count
@@ -234,7 +282,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             }
             cell.selectionStyle = .none
             cell.deleteBtn.tag = indexPath.row
-            cell.deleteBtn.addTarget(self, action: #selector(handleRegister), for: .touchDown)
+            cell.deleteBtn.addTarget(self, action: #selector(handleRegister(_:)), for: .touchDown)
+//            cell.property = histories[indexPath.row]
+            cell.configure(search: histories[indexPath.row])
             
             
             return cell
@@ -245,19 +295,52 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             
             cell.selectionStyle = . none
             cell.configure(search: searchList[indexPath.row])
+            cell.menuButton.addTarget(self, action: #selector(menuSheet(_:)), for: .touchDown)
+            cell.goButton.addTarget(self, action: #selector(saveHistory(_:)), for: .touchDown)
+            
             return cell
         }
         
     }
+    
+    @objc func menuSheet(_ sender: UIButton){
+        print("alert")
+    }
+    @objc func saveHistory(_ sender: UIButton){
+        let contentView = sender.superview
+        let cell = contentView?.superview as! SearchTableViewCell
+                
+        if let indexPath = SearchTableView.indexPath(for: cell) {
+            let search = searchList[indexPath.row]
+            try! realm.write{
+                let objects = realm.objects(Search.self)
+                for i in objects {
+                    if i == search {
+                        return
+                    }
+                }
+                realm.add(search)
+            }
+        }
+        updateHistory()
+        
+    }
     @objc func handleRegister(_ sender: UIButton){
-//        histories.remove(at:sender.tag)
-        searchHistoryTableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .none)
-        searchHistoryTableView.reloadData()
+        let contentView = sender.superview
+        let cell = contentView?.superview as! SearchHistoryTableViewCell
+                
+        if let indexPath = searchHistoryTableView.indexPath(for: cell) {
+            try! realm.write{
+                realm.delete(histories[indexPath.row])
+            }
+        }
+        updateHistory()
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return convertHeight(originValue: 56.0)
+//        return tableView == searchHistoryTableView ? convertHeight(originValue: 56.0) : convertHeight(originValue: 66.0)
+        return convertHeight(originValue: 66.0)
     }
     
     

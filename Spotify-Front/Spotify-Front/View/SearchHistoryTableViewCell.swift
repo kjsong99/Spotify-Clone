@@ -8,11 +8,18 @@
 import UIKit
 import SnapKit
 class SearchHistoryTableViewCell: UITableViewCell {
+//    var property : Search?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
+    
+    override func prepareForReuse(){
+//        configure(search: property!)
+
+    }
+    
+
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -30,7 +37,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
         fatalError()
     }
     func setLayout(){
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         
         contentView.addSubview(image)
         contentView.addSubview(labelView)
@@ -71,18 +78,18 @@ class SearchHistoryTableViewCell: UITableViewCell {
         
         deleteBtn.snp.makeConstraints{ btn in
             btn.centerY.equalToSuperview()
-            btn.right.equalToSuperview()
+            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 12.0))
             //            btn.width.equalTo(convertWidth(originValue: 12.0))
             //            btn.height.equalTo(convertHeight(originValue: 12.0))
         }
     }
     let labelView : UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
-    let image = {
+    var image = {
         let view = UIImageView()
         return view
     }()
@@ -114,24 +121,53 @@ class SearchHistoryTableViewCell: UITableViewCell {
         return button
     }()
     
+//    func configure(search: Search){
+////        image.image = UIImage(named: search.imageName)
+//        nameLabel.text = search.name
+//
+//        switch search.category {
+//
+//        case "artist":
+//            infoLabel.text = search.category
+//        case "music":
+//            infoLabel.text = search.category
+////            + " • " + search.singer!
+//        case "album":
+//            infoLabel.text = search.category
+////            " • " + search.singer!
+//        case "playlist":
+//            infoLabel.text = "laylist"
+//        default:
+//            infoLabel.text = "none"
+//        }
+    
     func configure(search: Search){
-//        image.image = UIImage(named: search.imageName)
         nameLabel.text = search.name
+        guard let url = URL(string: "http://localhost:8080/" + search.image_path) else {
+            return
+        }
+
+
         
         switch search.category {
-            
         case "artist":
             infoLabel.text = search.category
-        case "music":
-            infoLabel.text = search.category
-//            + " • " + search.singer!
-        case "album":
-            infoLabel.text = search.category
-//            " • " + search.singer!
-        case "playlist":
-            infoLabel.text = "laylist"
+            downloadImage(with: "http://localhost:8080/" + search.image_path){ result in
+                switch result {
+                case let .success(result):
+                    self.image.image = result
+                    self.image.getCircleImage()
+                    
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+            
         default:
-            infoLabel.text = "none"
+
+            infoLabel.text = search.category
+            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
+            
         }
         
         

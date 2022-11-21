@@ -7,12 +7,15 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 class SearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -30,20 +33,22 @@ class SearchTableViewCell: UITableViewCell {
         fatalError()
     }
     func setLayout(){
-        self.backgroundColor = .black
+        self.tintColor = hexStringToUIColor(hex: "#A7A7A7")
+        self.backgroundColor = .clear
         
         contentView.addSubview(image)
         contentView.addSubview(labelView)
         labelView.addSubview(nameLabel)
         labelView.addSubview(infoLabel)
         //        contentView.addSubview(mark)
-        contentView.addSubview(button)
+        contentView.addSubview(goButton)
+        contentView.addSubview(menuButton)
         
         image.snp.makeConstraints{ image in
             image.width.equalTo(convertWidth(originValue: 48.0))
             image.height.equalTo(convertHeight(originValue: 48.0))
             image.centerY.equalToSuperview()
-            image.left.equalToSuperview()
+            image.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
         }
         
         labelView.snp.makeConstraints{ view in
@@ -69,18 +74,25 @@ class SearchTableViewCell: UITableViewCell {
             label.top.equalTo(nameLabel.snp.bottom).offset(convertWidth(originValue: 2.0))
         }
         
-        button.snp.makeConstraints{ btn in
+        goButton.snp.makeConstraints{ btn in
             btn.centerY.equalToSuperview()
-            btn.right.equalToSuperview()
-            btn.width.equalTo(convertWidth(originValue: 12.0))
-            btn.height.equalTo(convertHeight(originValue: 12.0))
+            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 16.0))
+            btn.width.equalTo(convertWidth(originValue: 25.0))
+            btn.height.equalTo(convertHeight(originValue: 22.0))
         }
+        
+        menuButton.snp.makeConstraints{ btn in
+            btn.centerY.equalToSuperview()
+            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 16.0))
+            btn.width.equalTo(convertWidth(originValue: 25.0))
+            btn.height.equalTo(convertHeight(originValue: 22.0))
+        }
+        
         
         
     }
     let labelView : UIView = {
         let view = UIView()
-        view.backgroundColor = .black
         return view
     }()
     
@@ -108,44 +120,53 @@ class SearchTableViewCell: UITableViewCell {
         return view
     }()
     
-    let button = {
+    let goButton = {
         let button = UIButton()
+        button.setImage(UIImage(named: "arrow"), for: .normal)
+        return button
+    }()
+    
+    let menuButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "dot3"), for: .normal)
         return button
     }()
     
     func configure(search: Search){
         nameLabel.text = search.name
-        downloadImage(with: "http://localhost:8080/" + search.image_path) { result in
-            switch result {
-            case let .success(result):
-                self.image.image = result
-            case let .failure(error):
-                print(error.localizedDescription)
-                
-            }
+        guard let url = URL(string: "http://localhost:8080/" + search.image_path) else {
+            return
         }
+
+
+        
         switch search.category {
-            
-        case "music":
-            //music일때는 ... button
-            infoLabel.text = search.category
-            button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         case "artist":
             infoLabel.text = search.category
-            button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
-            //            + " • " + search.singer!
-        case "album":
-            infoLabel.text = search.category
-            button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
-            
-            //            " • " + search.singer!
-        case "playlist":
-            infoLabel.text = search.category
-            button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
+            downloadImage(with: "http://localhost:8080/" + search.image_path){ result in
+                switch result {
+                case let .success(result):
+                    self.image.image = result
+                    self.image.getCircleImage()
+                    
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+            goButton.isHidden = false
+            menuButton.isHidden = true
             
         default:
-            infoLabel.text = "none"
-//            button.setImage(UIImage(systemName: "chevron.right"), for: UIControl.State.normal)
+            if search.category == "music" {
+                goButton.isHidden = true
+                menuButton.isHidden = false
+            }else{
+                goButton.isHidden = false
+                menuButton.isHidden = true
+            }
+            infoLabel.text = search.category
+            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
+            
             
         }
         

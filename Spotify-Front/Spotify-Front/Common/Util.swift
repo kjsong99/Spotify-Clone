@@ -87,6 +87,7 @@ func downloadImage(`with` urlString : String, completion: @escaping (Result<UIIm
     }
     let resource = ImageResource(downloadURL: url)
 
+
     KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
         switch result {
         case .success(let value):

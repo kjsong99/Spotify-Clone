@@ -298,17 +298,6 @@ class AlbumListViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        //                songs = album.songs
-        //                let image = UIImage(named: album.imageName)
-        //                songTableView.reloadData()
-        //
-        //                getColors(image: image!)
-        //
-        //               // print(album.imageName)]//
-        //                imageView.image = image
-        //                nameLabel.text = album.name
-        //                artistNameLabel.text = album.artist.name
-        //                artistImageView.image = UIImage(named: album.artist.imageName)
         
     }
     
@@ -346,4 +335,5 @@ extension UIImageView{
         self.layer.borderColor = UIColor.clear.cgColor
         self.contentMode = .scaleToFill
     }
+    
 }
