@@ -15,6 +15,8 @@ class SearchTableViewCell: UITableViewCell {
         // Initialization code
     }
     
+    
+    
 
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -50,6 +52,7 @@ class SearchTableViewCell: UITableViewCell {
             image.centerY.equalToSuperview()
             image.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
         }
+
         
         labelView.snp.makeConstraints{ view in
             view.height.equalTo(convertHeight(originValue: 37.0))
@@ -101,6 +104,8 @@ class SearchTableViewCell: UITableViewCell {
         return view
     }()
     
+
+    
     let nameLabel = {
         let label = UILabel()
         label.font = UIFont(name: "CircularStd-Book", size: 16)
@@ -148,25 +153,29 @@ class SearchTableViewCell: UITableViewCell {
                 case let .success(result):
                     self.image.image = result
                     self.image.getCircleImage()
-                    
+
                 case let .failure(error):
                     print(error.localizedDescription)
                 }
             }
+
             goButton.isHidden = false
             menuButton.isHidden = true
             
-        default:
-            if search.category == "music" {
-                goButton.isHidden = true
-                menuButton.isHidden = false
-            }else{
-                goButton.isHidden = false
-                menuButton.isHidden = true
-            }
+        case "music":
+            goButton.isHidden = true
+            menuButton.isHidden = false
             infoLabel.text = search.category
             image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
             
+        case "album":
+            goButton.isHidden = false
+            menuButton.isHidden = true
+            infoLabel.text = search.category
+
+            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
+        default:
+            print("error")
             
         }
         

@@ -12,18 +12,20 @@ class SearchViewController: UIViewController {
     let realm = try! Realm()
     var searchList : [Search] = [Search]()
     var histories : [Search] = [Search]()
+    
     override func viewWillAppear(_ bool : Bool){
         super.viewWillAppear(bool)
        updateHistory()
         
     }
-    
+  
     func updateHistory(){
         histories.removeAll()
         let objects = realm.objects(Search.self)
         for i in objects{
             histories.append(i)
         }
+        searchHistoryTableView.dataSource = self
         searchHistoryTableView.reloadData()
     }
     override func viewDidLoad() {
@@ -284,6 +286,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             cell.deleteBtn.tag = indexPath.row
             cell.deleteBtn.addTarget(self, action: #selector(handleRegister(_:)), for: .touchDown)
 //            cell.property = histories[indexPath.row]
+            
             cell.configure(search: histories[indexPath.row])
             
             

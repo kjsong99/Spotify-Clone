@@ -15,7 +15,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse(){
-//        configure(search: property!)
+        
 
     }
     
@@ -163,11 +163,18 @@ class SearchHistoryTableViewCell: UITableViewCell {
                 }
             }
             
-        default:
-
+        case "album":
+            self.image.layer.cornerRadius = 0
             infoLabel.text = search.category
             image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
             
+        case "music":
+            self.image.layer.cornerRadius = 0
+            infoLabel.text = search.category
+            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
+            
+        default:
+            print("error")
         }
         
         
