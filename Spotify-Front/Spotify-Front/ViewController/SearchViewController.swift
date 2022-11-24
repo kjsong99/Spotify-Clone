@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import RealmSwift
+import UIImageColors
 class SearchViewController: UIViewController {
     let realm = try! Realm()
     var searchList : [Search] = [Search]()
@@ -29,6 +30,7 @@ class SearchViewController: UIViewController {
         searchHistoryTableView.reloadData()
     }
     override func viewDidLoad() {
+        print("view did load")
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.hideKeyboardWhenTappedAround()
@@ -132,12 +134,12 @@ class SearchViewController: UIViewController {
 //        searchHistoryTableView.backgroundColor = .black
         searchHistoryTableView.dataSource = self
         searchHistoryTableView.delegate = self
-        searchHistoryTableView.register(SearchHistoryTableViewCell.self, forCellReuseIdentifier: SearchHistoryTableViewCell.identifier)
+        searchHistoryTableView.register(SearchHistoryCell.self, forCellReuseIdentifier: SearchHistoryCell.identifier)
         
 //        SearchTableView.backgroundColor = .black
         SearchTableView.dataSource = self
         SearchTableView.delegate = self
-        SearchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        SearchTableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
     }
     
     // MARK: - UI Variable
@@ -260,9 +262,27 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = AlbumListViewController()
-        vc.configure()
-        show(vc, sender: self)
+        if tableView == searchHistoryTableView {
+            print(indexPath)
+            let image = downloadImage(with: "http://localhost:8080" + histories[indexPath.row].image_path){ result in
+                switch result {
+                case let .success(result):
+                    result.getColors(){ color in
+                        let vc = AlbumListViewController(data: self.histories[indexPath.row], image: result, color: (color?.secondary.withAlphaComponent(0.5).cgColor)!)
+//                        self.navigationController?.show(vc, sender: self)
+                        self.navigationController?.pushViewControllerFromLeft(viewControlller: vc)
+//                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
+                   
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+     
+        }else{
+            print("error")
+        }
+       
 //        self.navigationController?.pushViewControllerFromLeft(viewControlller: vc)
     }
     
@@ -279,7 +299,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == searchHistoryTableView {
-            let cell = searchHistoryTableView.dequeueCell(type: SearchHistoryTableViewCell.self, indexPath: indexPath)
+            let cell = searchHistoryTableView.dequeueCell(type: SearchHistoryCell.self, indexPath: indexPath)
             cell.selectionStyle = .none
             cell.deleteBtn.tag = indexPath.row
             cell.deleteBtn.addTarget(self, action: #selector(handleRegister(_:)), for: .touchDown)
@@ -289,7 +309,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }else{
-            let cell = SearchTableView.dequeueCell(type: SearchTableViewCell.self, indexPath: indexPath)
+            let cell = SearchTableView.dequeueCell(type: SearchCell.self, indexPath: indexPath)
             
             cell.selectionStyle = . none
             cell.configure(search: searchList[indexPath.row])
@@ -306,7 +326,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     @objc func saveHistory(_ sender: UIButton){
         let contentView = sender.superview
-        let cell = contentView?.superview as! SearchTableViewCell
+        let cell = contentView?.superview as! SearchCell
                 
         if let indexPath = SearchTableView.indexPath(for: cell) {
             let search = searchList[indexPath.row]
@@ -325,7 +345,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     @objc func handleRegister(_ sender: UIButton){
         let contentView = sender.superview
-        let cell = contentView?.superview as! SearchHistoryTableViewCell
+        let cell = contentView?.superview as! SearchHistoryCell
                 
         if let indexPath = searchHistoryTableView.indexPath(for: cell) {
             try! realm.write{
@@ -358,7 +378,7 @@ extension UITextField {
 extension UINavigationController{
     func pushViewControllerFromLeft(viewControlller : UIViewController){
         let transition = CATransition()
-        transition.duration = 0.1
+        transition.duration = 0.2
         transition.type = .moveIn
         transition.subtype = .fromRight
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
@@ -370,7 +390,7 @@ extension UINavigationController{
     
     func popViewControllerToLeft(){
         let transition = CATransition()
-        transition.duration = 0.1
+        transition.duration = 0.2
         transition.type = .moveIn
         transition.subtype = .fromLeft
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)

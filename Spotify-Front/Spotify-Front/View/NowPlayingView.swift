@@ -15,7 +15,7 @@ enum status {
     case play
 }
 
-class nowPlayingView: UIView {
+class NowPlayingView: UIView {
     var max: Float = 0.0
     var interval: Float = 0.0
     var time: Float = 0.0
@@ -183,7 +183,7 @@ class nowPlayingView: UIView {
     
 }
 
-extension nowPlayingView {
+extension NowPlayingView {
     func setConstraints(){
         self.snp.makeConstraints{ view in
             view.left.right.width.equalToSuperview()

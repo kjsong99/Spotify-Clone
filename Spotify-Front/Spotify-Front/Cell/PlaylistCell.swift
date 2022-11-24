@@ -8,9 +8,19 @@
 import UIKit
 import SnapKit
 
-class PlaylistCollectionViewCell: UICollectionViewCell {
+class PlaylistCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "Placeholder")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.backgroundColor = .clear
@@ -31,16 +41,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         return label
     }()
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     func setLayout(){
         contentView.addSubview(imageView)
@@ -75,6 +75,11 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     func configure(playlist: Playlist){
         imageView.image = UIImage(named: playlist.imageName)
         nameLabel.text = playlist.name
+    }
+    
+    func viewInit() {
+        imageView.image = nil
+        nameLabel.text = ""
     }
     
 }

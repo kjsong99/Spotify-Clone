@@ -7,15 +7,22 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
- class SearchTableViewCell: UITableViewCell {
- 
+class SearchHistoryCell: UITableViewCell {
+
+    override func prepareForReuse(){
+        
+
+    }
+    
+
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
         
     }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
@@ -25,7 +32,6 @@ import Kingfisher
         fatalError()
     }
     func setLayout(){
-        self.tintColor = hexStringToUIColor(hex: "#A7A7A7")
         self.backgroundColor = .clear
         
         contentView.addSubview(image)
@@ -33,8 +39,7 @@ import Kingfisher
         labelView.addSubview(nameLabel)
         labelView.addSubview(infoLabel)
         //        contentView.addSubview(mark)
-        contentView.addSubview(goButton)
-        contentView.addSubview(menuButton)
+        contentView.addSubview(deleteBtn)
         
         image.snp.makeConstraints{ image in
             image.width.equalTo(convertWidth(originValue: 48.0))
@@ -42,7 +47,6 @@ import Kingfisher
             image.centerY.equalToSuperview()
             image.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
         }
-
         
         labelView.snp.makeConstraints{ view in
             view.height.equalTo(convertHeight(originValue: 37.0))
@@ -67,34 +71,24 @@ import Kingfisher
             label.top.equalTo(nameLabel.snp.bottom).offset(convertWidth(originValue: 2.0))
         }
         
-        goButton.snp.makeConstraints{ btn in
+        deleteBtn.snp.makeConstraints{ btn in
             btn.centerY.equalToSuperview()
-            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 16.0))
-            btn.width.equalTo(convertWidth(originValue: 25.0))
-            btn.height.equalTo(convertHeight(originValue: 22.0))
+            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 12.0))
+            //            btn.width.equalTo(convertWidth(originValue: 12.0))
+            //            btn.height.equalTo(convertHeight(originValue: 12.0))
         }
-        
-        menuButton.snp.makeConstraints{ btn in
-            btn.centerY.equalToSuperview()
-            btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 16.0))
-            btn.width.equalTo(convertWidth(originValue: 25.0))
-            btn.height.equalTo(convertHeight(originValue: 22.0))
-        }
-        
-        
-        
     }
     let labelView : UIView = {
         let view = UIView()
+        view.backgroundColor = .clear
         return view
     }()
     
-    let image = {
-        let view = UIImageView()
-        return view
+    var image = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Placeholder")
+        return imageView
     }()
-    
-
     
     let nameLabel = {
         let label = UILabel()
@@ -115,17 +109,33 @@ import Kingfisher
         return view
     }()
     
-    let goButton = {
+    let deleteBtn = {
         let button = UIButton()
-        button.setImage(UIImage(named: "arrow"), for: .normal)
+        button.setImage(UIImage(systemName: "xmark", withConfiguration: UIImage.SymbolConfiguration(pointSize: 16,weight: .bold)) , for: .normal)
+        
+        button.tintColor = hexStringToUIColor(hex: "#A7A7A7")
         return button
     }()
     
-    let menuButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "dot3"), for: .normal)
-        return button
-    }()
+//    func configure(search: Search){
+////        image.image = UIImage(named: search.imageName)
+//        nameLabel.text = search.name
+//
+//        switch search.category {
+//
+//        case "artist":
+//            infoLabel.text = search.category
+//        case "music":
+//            infoLabel.text = search.category
+////            + " • " + search.singer!
+//        case "album":
+//            infoLabel.text = search.category
+////            " • " + search.singer!
+//        case "playlist":
+//            infoLabel.text = "laylist"
+//        default:
+//            infoLabel.text = "none"
+//        }
     
     func configure(search: Search){
         nameLabel.text = search.name
@@ -143,30 +153,23 @@ import Kingfisher
                 case let .success(result):
                     self.image.image = result
                     self.image.getCircleImage()
-
                 case let .failure(error):
                     print(error.localizedDescription)
                 }
             }
-
-            goButton.isHidden = false
-            menuButton.isHidden = true
-            
-        case "music":
-            goButton.isHidden = true
-            menuButton.isHidden = false
-            infoLabel.text = search.category
-            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
             
         case "album":
-            goButton.isHidden = false
-            menuButton.isHidden = true
+            self.image.layer.cornerRadius = 0
             infoLabel.text = search.category
-
-            image.kf.setImage(with: url, placeholder: UIImage(systemName: "circle.fill"))
+            image.kf.setImage(with: url, placeholder: UIImage(named: "Placeholder"))
+            
+        case "music":
+            self.image.layer.cornerRadius = 0
+            infoLabel.text = search.category
+            image.kf.setImage(with: url, placeholder: UIImage(named: "Placeholder"))
+            
         default:
             print("error")
-            
         }
         
         

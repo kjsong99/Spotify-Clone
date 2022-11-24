@@ -29,6 +29,7 @@ class Search : Object, Codable{
         }else {
             return false
         }
-      }
+    }
 }
+
 

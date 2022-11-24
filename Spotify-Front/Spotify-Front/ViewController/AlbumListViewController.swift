@@ -9,15 +9,53 @@ import UIKit
 import SnapKit
 import UIImageColors
 import Moya
+import Kingfisher
 
 class AlbumListViewController: UIViewController {
     var songs = [Music]()
-    let gradient = CAGradientLayer()
-    override func viewDidLoad() {
-        setTableView()
-        setLayout()
-        //        setGradient()
+    var album : Album?
+    var data : Search
+    var color : CGColor
+    var image : UIImage
+    
+    init(data: Search, image: UIImage, color: CGColor){
+        self.data = data
+        self.image = image
+        self.color = color
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init(coder: NSCoder) {
+        fatalError()
+    }
+    func getAlbum() {
+        AlbumService.shared.requestAlbum(albumId: data.value_id){ result in
+            switch result {
+            case let .success(result):
+                self.configure(album: result)
+
+                
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+  
+    let gradient = CAGradientLayer()
+    
+    override func viewDidLoad() {
+        
+//        view.backgroundColor = UIColor(cgColor: color).withAlphaComponent(0.5)
+
+//        setGradient(color: color)
+        setLayout()
+        setTableView()
+        getAlbum()
+    }
+    
+ 
+    
+    
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -25,12 +63,19 @@ class AlbumListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewWillDisappear(animated)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        //        setGradient()
         updateTableView()
     }
+    
+
+    let gradientView = {
+//        let view =  UIView(frame: CGRect(x: 50, y: 50, width: 256, height: 256))
+        let temp = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        return temp
+    }()
     
     let imageView = {
         let image = UIImageView()
@@ -50,7 +95,7 @@ class AlbumListViewController: UIViewController {
     let artistImageView = {
         let image = UIImageView()
         //        image.image = UIImage(named: "jayz")
-       
+        
         return image
     }()
     
@@ -118,39 +163,14 @@ class AlbumListViewController: UIViewController {
         
         return tableView
     }()
-    func removeGradient(){
-        self.view.layer.sublayers!.remove(at: 0)
-    }
-    func setGradient(color : CGColor){
-        let colors = [color,
-                      UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 1).cgColor
-        ]
-        //        view.backgroundColor = UIColor(red: 0.294, green: 0.294, blue: 0.294, alpha: 1)
-        //        view.backgroundColor = UIColor(cgColor: colors[0])
-        print("set graident")
-        print(colors)
-        
-        gradient.colors = colors
-        gradient.locations = [0, 0.48]
-        
-        gradient.startPoint = CGPoint(x: 0.25, y: 0.5)
-        
-        gradient.endPoint = CGPoint(x: 0.75, y: 0.5)
-        
-        gradient.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0))
-        
-        gradient.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
-        gradient.position = view.center
-        view.layer.insertSublayer(gradient, at: 0)
-    }
     
-    func setTableView(){
+    func setTableView()  {
         songTableView.delegate = self
         songTableView.dataSource = self
-        songTableView.register(SongTableViewCell.self, forCellReuseIdentifier: SongTableViewCell.identifier)
+        songTableView.register(SongCell.self, forCellReuseIdentifier: SongCell.identifier)
     }
     
-    func updateTableView(){
+    func updateTableView()  {
         songTableView.snp.updateConstraints{ tableView in
             if isPlayingViewVisible {
                 tableView.bottom.equalToSuperview().offset(-1 * playingView.frame.height)
@@ -161,7 +181,7 @@ class AlbumListViewController: UIViewController {
         }
     }
     
-    func setLayout(){
+    func setLayout()  {
         view.addSubview(imageView)
         view.addSubview(songTableView)
         view.addSubview(nameLabel)
@@ -174,7 +194,12 @@ class AlbumListViewController: UIViewController {
         view.addSubview(shuffleBtn)
         view.addSubview(menuBtn)
         view.addSubview(playBtn)
+        imageView.image = image
         
+        
+//        gradientView.snp.makeConstraints{ gradient in
+//            gradient.width.height.left.right.top.bottom.equalToSuperview()
+//        }
         imageView.snp.makeConstraints{ image in
             image.width.equalTo(convertWidth(originValue: 246.0))
             image.height.equalTo(convertHeight(originValue: 246.0))
@@ -258,52 +283,47 @@ class AlbumListViewController: UIViewController {
             }
             
         }
-    }
-    
-    func getColors(image : UIImage){
-        //        var result = [CGColor]()
-        image.getColors{ color in
-            //            result.append((color?.primary.withAlphaComponent(0.5).cgColor)!)
-            //            result.append((color?.secondary.withAlphaComponent(0.9).cgColor)!)
-            self.setGradient(color:(color?.secondary.withAlphaComponent(0.8).cgColor)!)
-        }
+        
+        gradientView.getGradient(color: UIColor(cgColor: color))
+        view.insertSubview(gradientView, at: 0)
+     
     }
     //completion: @escaping (Result<Album, Error>) -> Void
-    func configure(){
-        //여기서 뷰 세팅
-        let albumId = 1
-        AlbumService.shared.requestAlbum(albumId: albumId){ [weak self] result in
+    func configure(album: Album) {
+        self.songs = album.musics
+        self.songTableView.reloadData()
+      
+        self.nameLabel.text = album.name
+        self.artistNameLabel.text = album.artist.name
+//        self.imageView.kf.setImage(with: URL(string: album.imagePath), placeholder: UIImage(named: "Placeholder"))
+//        downloadImage(with: "http://localhost:8080/" + album.imagePath){ result in
+//            switch result {
+//            case let .success(result):
+//
+//                self.imageView.image = result
+//                self.getColors(image: result)
+//
+//
+//
+//            case let .failure(error):
+//                print(error.localizedDescription)
+//            }
+//        }
+        downloadImage(with: "http://localhost:8080/" + album.artist.imagePath){ result in
             switch result {
-            case let .success(response):
-                //                guard let data = success.data else { return }
-                self?.nameLabel.text = response.name
-                self?.songs = response.musics
-                //                let image = UIImage(named: album.imageName)
-                self?.songTableView.reloadData()
-                downloadImage(with: "http://localhost:8080/" + response.imagePath) { result in
-                    switch result {
-                    case let .success(result):
-                        self?.getColors(image: result)
-                        self?.imageView.image = result
-                    case let .failure(error):
-                        print(error.localizedDescription)
-                    }
-                }
+            case let .success(result):
+                self.artistImageView.image = result
+                self.artistImageView.getCircleImage()
                 
-                
-                self?.artistNameLabel.text = response.artist.name
-                self?.artistImageView.kf.setImage(with: URL(string: "http://localhost:8080/" + response.artist.imagePath)!)
-                self?.artistImageView.getCircleImage()
             case let .failure(error):
                 print(error.localizedDescription)
             }
+
         }
         
+        
     }
-    
-    
 }
-
 extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -311,7 +331,7 @@ extension AlbumListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = songTableView.dequeueCell(type: SongTableViewCell.self, indexPath: indexPath)
+        let cell = songTableView.dequeueCell(type: SongCell.self, indexPath: indexPath)
         
         cell.configure(music: self.songs[indexPath.row])
         
@@ -334,4 +354,17 @@ extension UIImageView{
         self.contentMode = .scaleToFill
     }
     
+}
+
+extension UIView{
+    func getGradient(color : UIColor){
+        self.backgroundColor = color
+        let gradientMaskLayer = CAGradientLayer()
+        gradientMaskLayer.frame = self.bounds
+        
+        gradientMaskLayer.colors = [ UIColor.white.cgColor, UIColor.clear.cgColor]
+        gradientMaskLayer.locations = [0, 0.5]
+        
+        self.layer.mask = gradientMaskLayer
+    }
 }

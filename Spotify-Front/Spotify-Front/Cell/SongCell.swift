@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-class SongTableViewCell: UITableViewCell {
+class SongCell: UITableViewCell {
 
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,11 +28,17 @@ class SongTableViewCell: UITableViewCell {
     
     func configure(music : Music){
         nameLabel.text = music.name
+        for i in music.artists {
+            if artistLabel.text == "" {
+                artistLabel.text = i.artist.name
+            }else{
+                artistLabel.text! += ", " + i.artist.name
+            }
+        }
 //        artistLabel.text = music.artist.name
     }
     
     func setLayout(){
-//        self.backgroundColor = hexStringToUIColor(hex: "#121212")
         self.backgroundColor = .clear
         contentView.addSubview(nameLabel)
         contentView.addSubview(artistLabel)
@@ -62,15 +68,14 @@ class SongTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "CircularStd-Book", size: 16)
         label.textColor = .white
-        label.clipsToBounds = true
         return label
     }()
     
     let artistLabel = {
         let label = UILabel()
+        label.text = ""
         label.font = UIFont(name: "CircularStd-Book", size: 13)
         label.textColor = hexStringToUIColor(hex: "#B8B8B8")
-        label.clipsToBounds = true
 
         return label
     }()

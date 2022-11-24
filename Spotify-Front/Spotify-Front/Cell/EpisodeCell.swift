@@ -8,9 +8,19 @@
 import UIKit
 import SnapKit
 
-class EpisodeCollectionViewCell: UICollectionViewCell {
+class EpisodeCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setLayout()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
     let imageView : UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "Placeholder")
         return imageView
     }()
     
@@ -53,8 +63,6 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return textView
     }()
     
-  
-    
     let infoLabel : UILabel = {
         let label = UILabel()
         label.textColor = hexStringToUIColor(hex: "#A7A7A7")
@@ -75,18 +83,6 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         btn.tintColor = hexStringToUIColor(hex: "#A7A7A7")
         return btn
     }()
-    
-    
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setLayout()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     func setLayout(){
         contentView.addSubview(imageView)

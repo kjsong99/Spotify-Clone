@@ -1,11 +1,10 @@
 import UIKit
 import SnapKit
-class ViewController: UIViewController{
+class HomeViewController: UIViewController{
     override func viewDidLoad() {
         setGradient()
         setLayout()
         setCollectionView()
-        scrollView.contentInsetAdjustmentBehavior = .never
     }
     
 
@@ -13,12 +12,12 @@ class ViewController: UIViewController{
     func setCollectionView(){
         playlistCollectionView.delegate = self
         playlistCollectionView.dataSource = self
-        playlistCollectionView.register(PlaylistCollectionViewCell.self, forCellWithReuseIdentifier: PlaylistCollectionViewCell.identifier)
+        playlistCollectionView.register(PlaylistCell.self, forCellWithReuseIdentifier: PlaylistCell.identifier)
         playlistCollectionView.backgroundColor = .black
         
         episodeCollectionView.delegate = self
         episodeCollectionView.dataSource = self
-        episodeCollectionView.register(EpisodeCollectionViewCell.self, forCellWithReuseIdentifier: EpisodeCollectionViewCell.identifier)
+        episodeCollectionView.register(EpisodeCell.self, forCellWithReuseIdentifier: EpisodeCell.identifier)
         episodeCollectionView.backgroundColor = .black
         
         
@@ -27,9 +26,12 @@ class ViewController: UIViewController{
     // MARK: - Constraints
     
     func setLayout(){
+        
         view.addSubview(scrollView)
         
         scrollView.addSubview(mainView)
+        scrollView.contentInsetAdjustmentBehavior = .never
+
         mainView.addSubview(bellButton)
         mainView.addSubview(clockButton)
         mainView.addSubview(settingButton)
@@ -221,7 +223,7 @@ class ViewController: UIViewController{
 
 
 // MARK: - Extension
-extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.playlistCollectionView{
             return playlists.count
@@ -234,11 +236,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.playlistCollectionView{
            
-            let cell = playlistCollectionView.dequeueCell(type: PlaylistCollectionViewCell.self, indexPath: indexPath)
+            let cell = playlistCollectionView.dequeueCell(type: PlaylistCell.self, indexPath: indexPath)
             cell.configure(playlist: playlists[indexPath.row])
             return cell
         }else{
-            let cell = collectionView.dequeueCell(type: EpisodeCollectionViewCell.self, indexPath: indexPath)
+            let cell = collectionView.dequeueCell(type: EpisodeCell.self, indexPath: indexPath)
             cell.configure(episode: episodes[indexPath.row])
             return cell
         }
