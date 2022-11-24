@@ -18,7 +18,7 @@ var isPlayingViewVisible = false
 let playingView = {
     let view = nowPlayingView()
     view.backgroundColor = hexStringToUIColor(hex: "#232323")
-//    view.configure(music: Music(id: 1, name: "test", artist: Artist(id: 1, name: "test", imagePath: "test", albums: [])))
+    //    view.configure(music: Music(id: 1, name: "test", artist: Artist(id: 1, name: "test", imagePath: "test", albums: [])))
     view.isHidden = true
     return view
     
@@ -36,18 +36,18 @@ func convertHeight(originValue : CGFloat) -> CGFloat{
 
 func hexStringToUIColor (hex:String) -> UIColor {
     var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
+    
     if (cString.hasPrefix("#")) {
         cString.remove(at: cString.startIndex)
     }
-
+    
     if ((cString.count) != 6) {
         return UIColor.gray
     }
-
+    
     var rgbValue:UInt32 = 0
     Scanner(string: cString).scanHexInt32(&rgbValue)
-
+    
     return UIColor(
         red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
         green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
@@ -57,15 +57,15 @@ func hexStringToUIColor (hex:String) -> UIColor {
 }
 
 extension Int {
-  var hour: Int {
-    self / 3600
-  }
-  var minute: Int {
-    (self % 3600) / 60
-  }
-  var seconds: Int {
-    (self % 60)
-  }
+    var hour: Int {
+        self / 3600
+    }
+    var minute: Int {
+        (self % 3600) / 60
+    }
+    var seconds: Int {
+        (self % 60)
+    }
 }
 
 
@@ -86,8 +86,8 @@ func downloadImage(`with` urlString : String, completion: @escaping (Result<UIIm
         return
     }
     let resource = ImageResource(downloadURL: url)
-
-
+    
+    
     KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
         switch result {
         case .success(let value):
@@ -101,8 +101,39 @@ func downloadImage(`with` urlString : String, completion: @escaping (Result<UIIm
 
 public protocol Persistable {
     associatedtype ManagedObject : RealmSwift.Object
-
+    
     init(managedObject : ManagedObject)
-
+    
     func managedObject() -> ManagedObject
+}
+
+extension UITableViewCell{
+    static var identifier : String {
+        return String(describing: self)
+    }
+}
+
+extension UICollectionViewCell {
+    static var identifier : String {
+        return String(describing: self)
+    }
+}
+
+
+extension UITableView{
+    func dequeueCell<T: UITableViewCell>(type: T.Type, indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T else {
+            preconditionFailure()
+        }
+        return cell
+    }
+}
+
+extension UICollectionView{
+    func dequeueCell<T: UICollectionViewCell>(type: T.Type, indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as? T else {
+            preconditionFailure()
+        }
+        return cell
+    }
 }

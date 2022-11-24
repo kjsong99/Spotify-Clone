@@ -10,15 +10,12 @@
 		33B45196FABA6D447375E6AF /* Pods_Spotify_Front.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1A2B198F5C6A91C34D76E2 /* Pods_Spotify_Front.framework */; };
 		3D429E1147D5407CFA4F7459 /* Pods_Spotify_Front_Spotify_FrontUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2074DA9241ECC2AFE5A8993C /* Pods_Spotify_Front_Spotify_FrontUITests.framework */; };
 		966CF0952919545A00413486 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0942919545A00413486 /* Util.swift */; };
-		966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF099291A863F00413486 /* Circular Std Font.otf */; };
-		966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF09B291A880E00413486 /* CircularStd-Bold.ttf */; };
 		966CF09F291A8BE100413486 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */; };
 		966CF0A2291A8E2F00413486 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0A1291A8E2F00413486 /* Playlist.swift */; };
-		966CF0A8291BD32A00413486 /* Circular-Std-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0A7291BD31D00413486 /* Circular-Std-Book.ttf */; };
 		966CF0AC291CCEAE00413486 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0AB291CCEAE00413486 /* LibraryViewController.swift */; };
 		966CF0AE291CD1BC00413486 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0AD291CD1BC00413486 /* Episode.swift */; };
 		966CF0B0291CD22F00413486 /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0AF291CD22F00413486 /* EpisodeCollectionViewCell.swift */; };
-		966CF0B2291E36A600413486 /* nowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0B1291E36A500413486 /* nowPlayingView.swift */; };
+		966CF0B2291E36A600413486 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0B1291E36A500413486 /* NowPlayingView.swift */; };
 		966CF0B4291E378600413486 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0B3291E378600413486 /* Music.swift */; };
 		966CF0B6291E72AF00413486 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0B5291E72AF00413486 /* SearchViewController.swift */; };
 		966CF0B8291F6D5500413486 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0B7291F6D5500413486 /* Search.swift */; };
@@ -27,11 +24,8 @@
 		966CF0BE2922013B00413486 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0BD2922013A00413486 /* MusicPlayerViewController.swift */; };
 		966CF0C02922024400413486 /* MusicMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0BF2922024400413486 /* MusicMenuViewController.swift */; };
 		966CF0C22922025B00413486 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0C12922025B00413486 /* AlbumListViewController.swift */; };
-		966CF0C4292206E800413486 /* Music 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0C3292206E800413486 /* Music 1.mp3 */; };
 		966CF0C729220EA500413486 /* WaveForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0C629220EA500413486 /* WaveForm.swift */; };
 		966CF0CB292223C900413486 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0CA292223C900413486 /* SongTableViewCell.swift */; };
-		966CF0CD292236B100413486 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */; };
-		966CF0CF29223A7E00413486 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 966CF0CE29223A7E00413486 /* Inter-Bold.ttf */; };
 		966CF0D52923BDEE00413486 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D42923BDEE00413486 /* Artist.swift */; };
 		966CF0D72923BE0000413486 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D62923BE0000413486 /* Album.swift */; };
 		966CF0D9292717AE00413486 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966CF0D8292717AE00413486 /* TestViewController.swift */; };
@@ -40,6 +34,24 @@
 		969BFBE3292A10EC008F5342 /* SearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE2292A10EC008F5342 /* SearchTarget.swift */; };
 		969BFBE5292A13E7008F5342 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */; };
 		969BFBE7292A7FB9008F5342 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969BFBE6292A7FB9008F5342 /* SearchService.swift */; };
+		96ADEBB0292F31F500E036E1 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBA7292F31F400E036E1 /* Inter-Light.ttf */; };
+		96ADEBB1292F31F500E036E1 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBA8292F31F400E036E1 /* Inter-ExtraLight.ttf */; };
+		96ADEBB2292F31F500E036E1 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBA9292F31F400E036E1 /* Inter-Black.ttf */; };
+		96ADEBB3292F31F500E036E1 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAA292F31F400E036E1 /* Inter-Thin.ttf */; };
+		96ADEBB4292F31F500E036E1 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAB292F31F400E036E1 /* Inter-ExtraBold.ttf */; };
+		96ADEBB5292F31F500E036E1 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAC292F31F500E036E1 /* Inter-Medium.ttf */; };
+		96ADEBB6292F31F500E036E1 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAD292F31F500E036E1 /* Inter-SemiBold.ttf */; };
+		96ADEBB7292F31F500E036E1 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAE292F31F500E036E1 /* Inter-Bold.ttf */; };
+		96ADEBB8292F31F500E036E1 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBAF292F31F500E036E1 /* Inter-Regular.ttf */; };
+		96ADEBC1292F324600E036E1 /* CircularStd-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBB9292F324500E036E1 /* CircularStd-BlackItalic.ttf */; };
+		96ADEBC2292F324600E036E1 /* CircularStd-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBA292F324500E036E1 /* CircularStd-BoldItalic.ttf */; };
+		96ADEBC3292F324600E036E1 /* CircularStd-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBB292F324500E036E1 /* CircularStd-Medium.ttf */; };
+		96ADEBC4292F324600E036E1 /* CircularStd-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBC292F324500E036E1 /* CircularStd-MediumItalic.ttf */; };
+		96ADEBC5292F324600E036E1 /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBD292F324500E036E1 /* CircularStd-Book.ttf */; };
+		96ADEBC6292F324600E036E1 /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBE292F324500E036E1 /* CircularStd-Black.ttf */; };
+		96ADEBC7292F324600E036E1 /* CircularStd-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBBF292F324600E036E1 /* CircularStd-BookItalic.ttf */; };
+		96ADEBC8292F324600E036E1 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96ADEBC0292F324600E036E1 /* CircularStd-Bold.ttf */; };
+		96ADEBCC292F378200E036E1 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96ADEBCB292F378200E036E1 /* CategoryTableViewCell.swift */; };
 		96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B02918EF6400F307A4 /* AppDelegate.swift */; };
 		96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B22918EF6400F307A4 /* SceneDelegate.swift */; };
 		96D694B52918EF6400F307A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D694B42918EF6400F307A4 /* ViewController.swift */; };
@@ -75,16 +87,12 @@
 		3876A9CB43C72AB07E9DD88B /* Pods-Spotify-FrontTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify-FrontTests.debug.xcconfig"; path = "Target Support Files/Pods-Spotify-FrontTests/Pods-Spotify-FrontTests.debug.xcconfig"; sourceTree = "<group>"; };
 		69868F65F3B3AC395C738723 /* Pods-Spotify-Front.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify-Front.debug.xcconfig"; path = "Target Support Files/Pods-Spotify-Front/Pods-Spotify-Front.debug.xcconfig"; sourceTree = "<group>"; };
 		966CF0942919545A00413486 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		966CF097291A855F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Circular Std Font.otf"; path = "../../../../../Downloads/Circular Std Font.otf"; sourceTree = "<group>"; };
-		966CF099291A863F00413486 /* Circular Std Font.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular Std Font.otf"; sourceTree = "<group>"; };
-		966CF09B291A880E00413486 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.ttf"; path = "../../../../Downloads/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		966CF0A1291A8E2F00413486 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
-		966CF0A7291BD31D00413486 /* Circular-Std-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Circular-Std-Book.ttf"; sourceTree = "<group>"; };
 		966CF0AB291CCEAE00413486 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		966CF0AD291CD1BC00413486 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		966CF0AF291CD22F00413486 /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
-		966CF0B1291E36A500413486 /* nowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nowPlayingView.swift; sourceTree = "<group>"; };
+		966CF0B1291E36A500413486 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		966CF0B3291E378600413486 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		966CF0B5291E72AF00413486 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		966CF0B7291F6D5500413486 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -93,11 +101,8 @@
 		966CF0BD2922013A00413486 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		966CF0BF2922024400413486 /* MusicMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMenuViewController.swift; sourceTree = "<group>"; };
 		966CF0C12922025B00413486 /* AlbumListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
-		966CF0C3292206E800413486 /* Music 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Music 1.mp3"; path = "../../../../../Downloads/Music 1.mp3"; sourceTree = "<group>"; };
 		966CF0C629220EA500413486 /* WaveForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveForm.swift; sourceTree = "<group>"; };
 		966CF0CA292223C900413486 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
-		966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-VariableFont_slnt,wght.ttf"; path = "../../../Downloads/Inter/Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
-		966CF0CE29223A7E00413486 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		966CF0D42923BDEE00413486 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		966CF0D62923BE0000413486 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		966CF0D8292717AE00413486 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +111,25 @@
 		969BFBE2292A10EC008F5342 /* SearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTarget.swift; sourceTree = "<group>"; };
 		969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		969BFBE6292A7FB9008F5342 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		96ADEBA6292F30EA00E036E1 /* Music 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Music 1.mp3"; sourceTree = "<group>"; };
+		96ADEBA7292F31F400E036E1 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Light.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Light.ttf"; sourceTree = "<group>"; };
+		96ADEBA8292F31F400E036E1 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-ExtraLight.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		96ADEBA9292F31F400E036E1 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Black.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Black.ttf"; sourceTree = "<group>"; };
+		96ADEBAA292F31F400E036E1 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Thin.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Thin.ttf"; sourceTree = "<group>"; };
+		96ADEBAB292F31F400E036E1 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-ExtraBold.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		96ADEBAC292F31F500E036E1 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Medium.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		96ADEBAD292F31F500E036E1 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-SemiBold.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		96ADEBAE292F31F500E036E1 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Bold.ttf"; sourceTree = "<group>"; };
+		96ADEBAF292F31F500E036E1 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.ttf"; path = "../../../../../../Downloads/Inter/static/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		96ADEBB9292F324500E036E1 /* CircularStd-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-BlackItalic.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-BlackItalic.ttf"; sourceTree = "<group>"; };
+		96ADEBBA292F324500E036E1 /* CircularStd-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-BoldItalic.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-BoldItalic.ttf"; sourceTree = "<group>"; };
+		96ADEBBB292F324500E036E1 /* CircularStd-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Medium.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-Medium.ttf"; sourceTree = "<group>"; };
+		96ADEBBC292F324500E036E1 /* CircularStd-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-MediumItalic.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-MediumItalic.ttf"; sourceTree = "<group>"; };
+		96ADEBBD292F324500E036E1 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Book.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		96ADEBBE292F324500E036E1 /* CircularStd-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Black.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-Black.ttf"; sourceTree = "<group>"; };
+		96ADEBBF292F324600E036E1 /* CircularStd-BookItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-BookItalic.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-BookItalic.ttf"; sourceTree = "<group>"; };
+		96ADEBC0292F324600E036E1 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.ttf"; path = "../../../../../../Downloads/circular-std-font-family/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		96ADEBCB292F378200E036E1 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		96D694AD2918EF6400F307A4 /* Spotify-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D694B02918EF6400F307A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D694B22918EF6400F307A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,31 +191,24 @@
 		966CF096291A854E00413486 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				966CF0C3292206E800413486 /* Music 1.mp3 */,
-				966CF0CE29223A7E00413486 /* Inter-Bold.ttf */,
-				966CF097291A855F00413486 /* Circular Std Font.otf */,
+				96ADEBA1292F30B900E036E1 /* font */,
+				96ADEBA0292F30AF00E036E1 /* audio */,
 			);
 			path = resources;
 			sourceTree = "<group>";
 		};
-		966CF09D291A8BA300413486 /* View */ = {
+		966CF09D291A8BA300413486 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				96D694B42918EF6400F307A4 /* ViewController.swift */,
-				966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */,
 				966CF0AB291CCEAE00413486 /* LibraryViewController.swift */,
-				966CF0AF291CD22F00413486 /* EpisodeCollectionViewCell.swift */,
-				966CF0B1291E36A500413486 /* nowPlayingView.swift */,
 				966CF0B5291E72AF00413486 /* SearchViewController.swift */,
-				966CF0BB291F7BA100413486 /* SearchHistoryTableViewCell.swift */,
 				966CF0BD2922013A00413486 /* MusicPlayerViewController.swift */,
 				966CF0BF2922024400413486 /* MusicMenuViewController.swift */,
 				966CF0C12922025B00413486 /* AlbumListViewController.swift */,
-				966CF0CA292223C900413486 /* SongTableViewCell.swift */,
 				966CF0D8292717AE00413486 /* TestViewController.swift */,
-				969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */,
 			);
-			path = View;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		966CF0A0291A8E1C00413486 /* Model */ = {
@@ -225,10 +242,62 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		96ADEB9E292F307900E036E1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				966CF09E291A8BE100413486 /* PlaylistCollectionViewCell.swift */,
+				966CF0AF291CD22F00413486 /* EpisodeCollectionViewCell.swift */,
+				966CF0BB291F7BA100413486 /* SearchHistoryTableViewCell.swift */,
+				966CF0CA292223C900413486 /* SongTableViewCell.swift */,
+				969BFBE4292A13E7008F5342 /* SearchTableViewCell.swift */,
+				96ADEBCB292F378200E036E1 /* CategoryTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		96ADEB9F292F308300E036E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				966CF0B1291E36A500413486 /* NowPlayingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		96ADEBA0292F30AF00E036E1 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				96ADEBA6292F30EA00E036E1 /* Music 1.mp3 */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
+		96ADEBA1292F30B900E036E1 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				96ADEBBE292F324500E036E1 /* CircularStd-Black.ttf */,
+				96ADEBB9292F324500E036E1 /* CircularStd-BlackItalic.ttf */,
+				96ADEBC0292F324600E036E1 /* CircularStd-Bold.ttf */,
+				96ADEBBA292F324500E036E1 /* CircularStd-BoldItalic.ttf */,
+				96ADEBBD292F324500E036E1 /* CircularStd-Book.ttf */,
+				96ADEBBF292F324600E036E1 /* CircularStd-BookItalic.ttf */,
+				96ADEBBB292F324500E036E1 /* CircularStd-Medium.ttf */,
+				96ADEBBC292F324500E036E1 /* CircularStd-MediumItalic.ttf */,
+				96ADEBA9292F31F400E036E1 /* Inter-Black.ttf */,
+				96ADEBAE292F31F500E036E1 /* Inter-Bold.ttf */,
+				96ADEBAB292F31F400E036E1 /* Inter-ExtraBold.ttf */,
+				96ADEBA8292F31F400E036E1 /* Inter-ExtraLight.ttf */,
+				96ADEBA7292F31F400E036E1 /* Inter-Light.ttf */,
+				96ADEBAC292F31F500E036E1 /* Inter-Medium.ttf */,
+				96ADEBAF292F31F500E036E1 /* Inter-Regular.ttf */,
+				96ADEBAD292F31F500E036E1 /* Inter-SemiBold.ttf */,
+				96ADEBAA292F31F400E036E1 /* Inter-Thin.ttf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
 		96D694A42918EF6300F307A4 = {
 			isa = PBXGroup;
 			children = (
-				966CF0CC292236B100413486 /* Inter-VariableFont_slnt,wght.ttf */,
 				96D694AF2918EF6400F307A4 /* Spotify-Front */,
 				96D694C62918EF6800F307A4 /* Spotify-FrontTests */,
 				96D694D02918EF6800F307A4 /* Spotify-FrontUITests */,
@@ -251,11 +320,10 @@
 		96D694AF2918EF6400F307A4 /* Spotify-Front */ = {
 			isa = PBXGroup;
 			children = (
-				966CF0A7291BD31D00413486 /* Circular-Std-Book.ttf */,
+				96ADEB9F292F308300E036E1 /* View */,
+				96ADEB9E292F307900E036E1 /* Cell */,
 				966CF0A0291A8E1C00413486 /* Model */,
-				966CF09D291A8BA300413486 /* View */,
-				966CF09B291A880E00413486 /* CircularStd-Bold.ttf */,
-				966CF099291A863F00413486 /* Circular Std Font.otf */,
+				966CF09D291A8BA300413486 /* ViewController */,
 				966CF096291A854E00413486 /* resources */,
 				966CF0932919544F00413486 /* Common */,
 				96D694B02918EF6400F307A4 /* AppDelegate.swift */,
@@ -416,14 +484,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				966CF0CD292236B100413486 /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				96D694BD2918EF6700F307A4 /* LaunchScreen.storyboard in Resources */,
-				966CF0CF29223A7E00413486 /* Inter-Bold.ttf in Resources */,
+				96ADEBB0292F31F500E036E1 /* Inter-Light.ttf in Resources */,
+				96ADEBC6292F324600E036E1 /* CircularStd-Black.ttf in Resources */,
+				96ADEBB3292F31F500E036E1 /* Inter-Thin.ttf in Resources */,
+				96ADEBB6292F31F500E036E1 /* Inter-SemiBold.ttf in Resources */,
+				96ADEBB4292F31F500E036E1 /* Inter-ExtraBold.ttf in Resources */,
+				96ADEBB5292F31F500E036E1 /* Inter-Medium.ttf in Resources */,
+				96ADEBC2292F324600E036E1 /* CircularStd-BoldItalic.ttf in Resources */,
+				96ADEBB7292F31F500E036E1 /* Inter-Bold.ttf in Resources */,
+				96ADEBC5292F324600E036E1 /* CircularStd-Book.ttf in Resources */,
+				96ADEBC1292F324600E036E1 /* CircularStd-BlackItalic.ttf in Resources */,
+				96ADEBB2292F31F500E036E1 /* Inter-Black.ttf in Resources */,
+				96ADEBC3292F324600E036E1 /* CircularStd-Medium.ttf in Resources */,
+				96ADEBB8292F31F500E036E1 /* Inter-Regular.ttf in Resources */,
+				96ADEBC8292F324600E036E1 /* CircularStd-Bold.ttf in Resources */,
+				96ADEBC7292F324600E036E1 /* CircularStd-BookItalic.ttf in Resources */,
 				96D694BA2918EF6700F307A4 /* Assets.xcassets in Resources */,
-				966CF09C291A880E00413486 /* CircularStd-Bold.ttf in Resources */,
-				966CF09A291A86A500413486 /* Circular Std Font.otf in Resources */,
-				966CF0A8291BD32A00413486 /* Circular-Std-Book.ttf in Resources */,
-				966CF0C4292206E800413486 /* Music 1.mp3 in Resources */,
+				96ADEBB1292F31F500E036E1 /* Inter-ExtraLight.ttf in Resources */,
+				96ADEBC4292F324600E036E1 /* CircularStd-MediumItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,11 +642,12 @@
 				969BFBE7292A7FB9008F5342 /* SearchService.swift in Sources */,
 				969BFBE5292A13E7008F5342 /* SearchTableViewCell.swift in Sources */,
 				966CF0BC291F7BA100413486 /* SearchHistoryTableViewCell.swift in Sources */,
-				966CF0B2291E36A600413486 /* nowPlayingView.swift in Sources */,
+				966CF0B2291E36A600413486 /* NowPlayingView.swift in Sources */,
 				96D694B12918EF6400F307A4 /* AppDelegate.swift in Sources */,
 				966CF0C02922024400413486 /* MusicMenuViewController.swift in Sources */,
 				966CF0BE2922013B00413486 /* MusicPlayerViewController.swift in Sources */,
 				966CF0DF2928D1DA00413486 /* AlbumService.swift in Sources */,
+				96ADEBCC292F378200E036E1 /* CategoryTableViewCell.swift in Sources */,
 				96D694B32918EF6400F307A4 /* SceneDelegate.swift in Sources */,
 				966CF0CB292223C900413486 /* SongTableViewCell.swift in Sources */,
 				966CF0BA291F6F8200413486 /* Data.swift in Sources */,
