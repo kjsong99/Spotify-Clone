@@ -26,6 +26,11 @@ class SongCell: UITableViewCell {
         fatalError()
     }
     
+    override func prepareForReuse() {
+        self.artistLabel.text = ""
+        self.nameLabel.text = ""
+    }
+    
     func configure(music : Music){
         nameLabel.text = music.name
         for i in music.artists {

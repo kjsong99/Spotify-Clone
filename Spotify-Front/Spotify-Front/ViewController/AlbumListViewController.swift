@@ -44,10 +44,6 @@ class AlbumListViewController: UIViewController {
     let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
-        
-//        view.backgroundColor = UIColor(cgColor: color).withAlphaComponent(0.5)
-
-//        setGradient(color: color)
         setLayout()
         setTableView()
         getAlbum()
@@ -79,13 +75,11 @@ class AlbumListViewController: UIViewController {
     
     let imageView = {
         let image = UIImageView()
-        //        image.image = UIImage(named: "Search 3")
         return image
     }()
     
     let nameLabel = {
         let label = UILabel()
-        //        label.text = "Reasonable Doubt"
         label.font = UIFont(name: "CircularStd-Bold", size: 24)
         label.textColor = .white
         label.clipsToBounds = true
@@ -94,14 +88,11 @@ class AlbumListViewController: UIViewController {
     
     let artistImageView = {
         let image = UIImageView()
-        //        image.image = UIImage(named: "jayz")
-        
         return image
     }()
     
     let artistNameLabel = {
         let label = UILabel()
-        //        label.text = "JAY-Z"
         label.font = UIFont(name: "Inter-Bold", size: 13)
         label.textColor = .white
         label.clipsToBounds = true
@@ -156,8 +147,8 @@ class AlbumListViewController: UIViewController {
     
     let songTableView = {
         let tableView = UITableView()
-        
-        tableView.backgroundColor = hexStringToUIColor(hex: "#121212").withAlphaComponent(0.8)
+//        tableView.backgroundColor = .clear
+        tableView.backgroundColor = hexStringToUIColor(hex: "#121212").withAlphaComponent(0.2)
         //        tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
@@ -165,6 +156,7 @@ class AlbumListViewController: UIViewController {
     }()
     
     func setTableView()  {
+        
         songTableView.delegate = self
         songTableView.dataSource = self
         songTableView.register(SongCell.self, forCellReuseIdentifier: SongCell.identifier)
@@ -197,9 +189,6 @@ class AlbumListViewController: UIViewController {
         imageView.image = image
         
         
-//        gradientView.snp.makeConstraints{ gradient in
-//            gradient.width.height.left.right.top.bottom.equalToSuperview()
-//        }
         imageView.snp.makeConstraints{ image in
             image.width.equalTo(convertWidth(originValue: 246.0))
             image.height.equalTo(convertHeight(originValue: 246.0))

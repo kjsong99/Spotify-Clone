@@ -11,6 +11,7 @@ import RealmSwift
 import UIImageColors
 class SearchViewController: UIViewController {
     let realm = try! Realm()
+    let tagList = ["최적 검색 결과", "곡", "앨범", "아티스트", "플레이리스트"]
     var searchList : [Search] = [Search]()
     var histories : [Search] = [Search]()
     
@@ -30,7 +31,6 @@ class SearchViewController: UIViewController {
         searchHistoryTableView.reloadData()
     }
     override func viewDidLoad() {
-        print("view did load")
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.hideKeyboardWhenTappedAround()
@@ -47,6 +47,7 @@ class SearchViewController: UIViewController {
         
         view.backgroundColor = hexStringToUIColor(hex: "#191919").withAlphaComponent(0.5)
         view.addSubview(searchFieldView)
+        view.addSubview(categoryCollectionView)
         searchFieldView.addSubview(searchField)
         searchFieldView.addSubview(searchImage)
         searchFieldView.addSubview(initBtn)
@@ -65,6 +66,13 @@ class SearchViewController: UIViewController {
             view.height.equalTo(convertHeight(originValue: 30.0))
             view.top.equalTo(self.view.safeAreaLayoutGuide).offset(convertHeight(originValue: 8.0))
             view.left.equalToSuperview().offset(convertWidth(originValue: 16.0))
+        }
+        
+        categoryCollectionView.snp.makeConstraints{ collection in
+            collection.left.right.width.equalToSuperview()
+            collection.top.equalTo(searchFieldView.snp.bottom).offset(15)
+            collection.height.equalTo(60)
+            
         }
         
         searchImage.snp.makeConstraints{ image in
@@ -121,7 +129,7 @@ class SearchViewController: UIViewController {
         searchView.snp.makeConstraints{ view in
             view.width.equalToSuperview()
             view.bottom.equalToSuperview()
-            view.top.equalTo(searchFieldView.snp.bottom).offset(convertHeight(originValue: 21.0))
+            view.top.equalTo(categoryCollectionView.snp.bottom).offset(convertHeight(originValue: 21.0))
         }
         
         searchHistoryView.snp.makeConstraints{ view in
@@ -140,6 +148,10 @@ class SearchViewController: UIViewController {
         SearchTableView.dataSource = self
         SearchTableView.delegate = self
         SearchTableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
+        
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
     
     // MARK: - UI Variable
@@ -224,6 +236,15 @@ class SearchViewController: UIViewController {
         return tableView
     }()
     
+    let categoryCollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        return collectionView
+    }()
+    
     // MARK: - Function
     
     
@@ -263,7 +284,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == searchHistoryTableView {
-            print(indexPath)
             let image = downloadImage(with: "http://localhost:8080" + histories[indexPath.row].image_path){ result in
                 switch result {
                 case let .success(result):
@@ -401,4 +421,29 @@ extension UINavigationController{
         self.setNavigationBarHidden(true, animated: false)
         
     }
+}
+
+extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tagList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueCell(type: CategoryCell.self, indexPath: indexPath)
+        cell.configure(text: tagList[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tmpLabel : UILabel = UILabel()
+
+        tmpLabel.text = tagList[indexPath.item]
+        return CGSize(width: Int(tmpLabel.intrinsicContentSize.width) + 30, height: 35)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    
 }
