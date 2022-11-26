@@ -10,6 +10,9 @@ import Moya
 
 enum SearchAPI{
     case search(keyword : String)
+    case artist(keyword : String)
+    case music(keyword: String)
+    case album(keyword: String)
 }
 
 extension SearchAPI: TargetType{
@@ -21,6 +24,12 @@ extension SearchAPI: TargetType{
         switch self{
         case .search:
             return "api/v1/search"
+        case .artist:
+            return "api/v1/search/artist"
+        case .music:
+            return "api/v1/search/music"
+        case .album:
+            return "api/v1/search/album"
         }
     }
     
@@ -36,6 +45,13 @@ extension SearchAPI: TargetType{
         switch self {
         case .search(let keyword):
             return .requestParameters(parameters: ["keyword" : keyword], encoding: URLEncoding.default)
+        case .music(let keyword):
+            return .requestParameters(parameters: ["keyword" : keyword], encoding: URLEncoding.default)
+        case .artist(let keyword):
+            return .requestParameters(parameters: ["keyword" : keyword], encoding: URLEncoding.default)
+        case .album(let keyword):
+            return .requestParameters(parameters: ["keyword" : keyword], encoding: URLEncoding.default)
+            
         }
     }
     

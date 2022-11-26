@@ -26,4 +26,19 @@ public class SearchServiceImpl implements SearchService {
     public List<Search> search(String keyword) {
         return searchRepository.findAllBy(keyword);
     }
+
+    @Override
+    public List<Search> searchArtist(String keyword) {
+        return searchRepository.findArtistBy(keyword);
+    }
+
+    @Override
+    public List<Search> searchAlbum(String keyword) {
+        return searchRepository.findAlbumBy(keyword);
+    }
+
+    @Override
+    public List<Search> searchMusic(String keyword) {
+        return searchRepository.findMusicBy(keyword);
+    }
 }

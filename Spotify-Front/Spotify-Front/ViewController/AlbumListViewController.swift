@@ -343,6 +343,10 @@ extension UIImageView{
         self.contentMode = .scaleToFill
     }
     
+    func getShalpImage(){
+        self.layer.cornerRadius = 0
+    }
+    
 }
 
 extension UIView{

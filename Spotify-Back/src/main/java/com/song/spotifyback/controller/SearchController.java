@@ -29,4 +29,25 @@ public class SearchController {
 //        searchService.initSequence();
         return ResponseEntity.ok(this.searchService.search(keyword));
     }
+
+    @ResponseBody
+    @RequestMapping("/artist")
+    public ResponseEntity<List<Search>> searchArtistByKeyword(@RequestParam ("keyword") String keyword){
+//        searchService.initSequence();
+        return ResponseEntity.ok(this.searchService.searchArtist(keyword));
+    }
+
+    @ResponseBody
+    @RequestMapping("/music")
+    public ResponseEntity<List<Search>> searchMusicByKeyword(@RequestParam ("keyword") String keyword){
+//        searchService.initSequence();
+        return ResponseEntity.ok(this.searchService.searchMusic(keyword));
+    }
+
+    @ResponseBody
+    @RequestMapping("/album")
+    public ResponseEntity<List<Search>> searchAlbumByKeyword(@RequestParam ("keyword") String keyword){
+//        searchService.initSequence();
+        return ResponseEntity.ok(this.searchService.searchAlbum(keyword));
+    }
 }

@@ -11,7 +11,8 @@ import RealmSwift
 import UIImageColors
 class SearchViewController: UIViewController {
     let realm = try! Realm()
-    let tagList = ["최적 검색 결과", "곡", "앨범", "아티스트", "플레이리스트"]
+    let tagList = ["최적 검색 결과", "곡","아티스트", "앨범",  "플레이리스트", "팟캐스트 및 프로그램", "프로필"]
+    var selected = 0
     var searchList : [Search] = [Search]()
     var histories : [Search] = [Search]()
     
@@ -45,7 +46,7 @@ class SearchViewController: UIViewController {
     
     func setLayout(){
         
-        view.backgroundColor = hexStringToUIColor(hex: "#191919").withAlphaComponent(0.5)
+        view.backgroundColor = hexStringToUIColor(hex: "#1A1D1D").withAlphaComponent(0.5)
         view.addSubview(searchFieldView)
         view.addSubview(categoryCollectionView)
         searchFieldView.addSubview(searchField)
@@ -71,7 +72,7 @@ class SearchViewController: UIViewController {
         categoryCollectionView.snp.makeConstraints{ collection in
             collection.left.right.width.equalToSuperview()
             collection.top.equalTo(searchFieldView.snp.bottom).offset(15)
-            collection.height.equalTo(60)
+            collection.height.equalTo(35)
             
         }
         
@@ -139,12 +140,10 @@ class SearchViewController: UIViewController {
     }
     
     func setTableView(){
-//        searchHistoryTableView.backgroundColor = .black
         searchHistoryTableView.dataSource = self
         searchHistoryTableView.delegate = self
         searchHistoryTableView.register(SearchHistoryCell.self, forCellReuseIdentifier: SearchHistoryCell.identifier)
         
-//        SearchTableView.backgroundColor = .black
         SearchTableView.dataSource = self
         SearchTableView.delegate = self
         SearchTableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
@@ -166,14 +165,15 @@ class SearchViewController: UIViewController {
     
     let searchView = {
         let view = UIView()
-        view.backgroundColor = hexStringToUIColor(hex: "#191F1F")
+        view.backgroundColor = hexStringToUIColor(hex: "#191F1F").withAlphaComponent(0.3)
         view.isHidden = true
         return view
     }()
     
     let searchFieldView : UIView = {
         let view = UIView()
-        view.backgroundColor = hexStringToUIColor(hex: "#242424")
+        view.backgroundColor = hexStringToUIColor(hex: "#242424").withAlphaComponent(0.3)
+//        view.backgroundColor = .clear
         view.layer.cornerRadius = 8.0
         return view
     }()
@@ -241,18 +241,17 @@ class SearchViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.allowsMultipleSelection = false
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
     // MARK: - Function
     
-    
-    @objc func textDidChanged(_sender: Any?){
-        if self.searchField.text?.count != 0 {
-            initBtn.isHidden = false
-            self.searchHistoryView.isHidden = true
-            self.searchView.isHidden = false
+    func search(){
+        switch selected {
+        case 0 :
             SearchService.shared.search(keyword: searchField.text!){ result in
                 switch result {
                 case let .success(result):
@@ -261,7 +260,87 @@ class SearchViewController: UIViewController {
                 case let .failure(error):
                     print(error.localizedDescription)
                 }
+                
             }
+            
+        case 1:
+            SearchService.shared.music(keyword: searchField.text!){ result in
+                switch result {
+                case let .success(result):
+                    self.searchList = result
+                    self.SearchTableView.reloadData()
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+        case 2 :
+            SearchService.shared.artist(keyword: searchField.text!){ result in
+                switch result {
+                case let .success(result):
+                    self.searchList = result
+                    self.SearchTableView.reloadData()
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+        case 3 :
+            SearchService.shared.album(keyword: searchField.text!){ result in
+                switch result {
+                case let .success(result):
+                    self.searchList = result
+                    self.SearchTableView.reloadData()
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+      
+        default:
+            print("error")
+            
+        }
+        
+    }
+    
+    
+    @objc func textDidChanged(_sender: Any?){
+        if self.searchField.text?.count != 0 {
+            initBtn.isHidden = false
+            self.searchHistoryView.isHidden = true
+            self.searchView.isHidden = false
+            switch selected {
+            case 0 :
+                SearchService.shared.search(keyword: searchField.text!){ result in
+                    switch result {
+                    case let .success(result):
+                        self.searchList = result
+                        self.SearchTableView.reloadData()
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+            case 1:
+                print("곡")
+            case 2:
+                print("아티스트")
+
+            case 3:
+                print("앨범")
+
+            case 4:
+                print("플레이리스트")
+
+            case 5:
+                print("팟캐스트 및 프로그램")
+
+            case 6:
+                print("프로필")
+                
+            default:
+                print("error")
+            }
+            
             
         }else{
             initBtn.isHidden = true
@@ -438,12 +517,38 @@ extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataS
         let tmpLabel : UILabel = UILabel()
 
         tmpLabel.text = tagList[indexPath.item]
-        return CGSize(width: Int(tmpLabel.intrinsicContentSize.width) + 30, height: 35)
+        tmpLabel.font = UIFont(name: "CircularStd-Book", size: 15)
+
+        return CGSize(width: Int(tmpLabel.intrinsicContentSize.width) + 40, height: 35)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 50.0
+        return 10.0
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left:15, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueCell(type: CategoryCell.self, indexPath: indexPath)
+        cell.setDeselectedCell()
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selected = indexPath.row
+        let cell = collectionView.dequeueCell(type: CategoryCell.self, indexPath: indexPath)
+        cell.setSelectedCell()
+        self.search()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let selectedCell = IndexPath(row: 0, section: 0)
+        collectionView.selectItem(at: selectedCell, animated: false, scrollPosition: [])
+    }
+   
+    
+    
     
     
 }

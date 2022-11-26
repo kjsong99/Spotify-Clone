@@ -18,6 +18,21 @@ public interface SearchRepository extends JpaRepository<Search, Long> {
     )
     List<Search> findAllBy(String keyword);
 
+    @Query(nativeQuery = true, value=
+        "select a.album_name as name, a.album_id as value_id, a.album_image_path as image_path ,'album' as category, (select get_seq('search')) as id from album a where a.album_name like %:keyword%"
+    )
+    List<Search> findAlbumBy(String keyword);
+
+    @Query(nativeQuery = true, value=
+            "select a.artist_name as name, a.artist_id as value_id, a.artist_image_path as image_path ,'artist' as category, (select get_seq('search')) as id  from artist a where a.artist_name like %:keyword%"
+    )
+    List<Search> findArtistBy(String keyword);
+
+    @Query(nativeQuery = true, value=
+            "select a.music_name as name, a.music_id as value_id, a.music_image_path as image_path ,'music' as category, (select get_seq('search')) as id  from music a where a.music_name like %:keyword%"
+    )
+    List<Search> findMusicBy(String keyword);
+
     @Query(nativeQuery = true, value = "select init_seq('search')")
     void initSeq();
 
