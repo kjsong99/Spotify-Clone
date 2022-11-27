@@ -12,7 +12,8 @@ target 'Spotify-Front' do
   pod 'Moya'
   pod 'Kingfisher'
   pod 'Realm'
-  pod 'RealmSwift' 
+  pod 'RealmSwift'
+  pod 'FlexibleHeader' 
   target 'Spotify-FrontTests' do
     inherit! :search_paths
     # Pods for testing

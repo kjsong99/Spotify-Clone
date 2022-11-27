@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.6.2)
+  - FlexibleHeader (1.0.0)
   - Kingfisher (7.3.2)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -15,6 +16,7 @@ PODS:
   - UIImageColors (2.1.0)
 
 DEPENDENCIES:
+  - FlexibleHeader
   - Kingfisher
   - Moya
   - MSPeekCollectionViewDelegateImplementation
@@ -26,6 +28,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - FlexibleHeader
     - Kingfisher
     - Moya
     - MSPeekCollectionViewDelegateImplementation
@@ -36,6 +39,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  FlexibleHeader: 03674a0c611018a78cde8bdb64af21438c89e161
   Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   MSPeekCollectionViewDelegateImplementation: be35a217bd302976a9e4476151be992c1f150127
@@ -44,6 +48,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
 
-PODFILE CHECKSUM: 00e7c5e28f263afdf1b96d12677964742e8bfa78
+PODFILE CHECKSUM: 35b2a582de5d3dfd3915b2c05b28196dc9f6e652
 
 COCOAPODS: 1.11.3

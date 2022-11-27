@@ -51,7 +51,6 @@ class CategoryCell: UICollectionViewCell {
     let view = {
         let view = UIView()
         view.backgroundColor = hexStringToUIColor(hex: "#313334")
-        //        view.backgroundColor = hexStringToUIColor(hex: "#65D46E")
         
         return view
     }()
@@ -75,9 +74,4 @@ class CategoryCell: UICollectionViewCell {
     
 }
 
-extension UIView{
-    func getRoundedCorner(){
-        self.layer.cornerRadius = self.frame.height / 2
-        self.layer.masksToBounds = true
-    }
-}
+

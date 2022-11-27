@@ -1,13 +1,14 @@
 import UIKit
 import SnapKit
 class HomeViewController: UIViewController{
+    
+    // MARK: - Override, Init
+    
     override func viewDidLoad() {
         setGradient()
         setLayout()
         setCollectionView()
     }
-    
-
     
     func setCollectionView(){
         playlistCollectionView.delegate = self
@@ -22,8 +23,6 @@ class HomeViewController: UIViewController{
         
         
     }
-    
-    // MARK: - Constraints
     
     func setLayout(){
         
@@ -112,7 +111,8 @@ class HomeViewController: UIViewController{
         
     }
     
-    // MARK: - UI Variable
+    // MARK: - Variable
+    
     let scrollView : UIScrollView = {
        let view = UIScrollView()
         return view
@@ -120,17 +120,9 @@ class HomeViewController: UIViewController{
     
     let mainView : UIView = {
         let view = UIView()
-//        view.insetsLayoutMarginsFromSafeArea = false
         return view
     }()
     
-    
-//    let playingView = {
-//        let view = nowPlayingView()
-//        view.backgroundColor = hexStringToUIColor(hex: "#232323")
-//        view.configure(music: song)
-//        return view
-//    }()
     let playlistCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -180,6 +172,8 @@ class HomeViewController: UIViewController{
         button.addTarget(self, action: #selector(makePlayingViewHidden), for: .touchDown)
         return button
     }()
+    
+    // MARK: - Functions
     
     @objc func makePlayingViewHidden(){
         if isPlayingViewVisible {

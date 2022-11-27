@@ -18,6 +18,11 @@ class PlaylistCell: UICollectionViewCell {
         fatalError()
     }
     
+    override func prepareForReuse() {
+        imageView.image = nil
+        nameLabel.text = ""
+    }
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Placeholder")
@@ -77,9 +82,5 @@ class PlaylistCell: UICollectionViewCell {
         nameLabel.text = playlist.name
     }
     
-    func viewInit() {
-        imageView.image = nil
-        nameLabel.text = ""
-    }
     
 }

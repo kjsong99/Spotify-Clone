@@ -56,30 +56,9 @@ func hexStringToUIColor (hex:String) -> UIColor {
     )
 }
 
-extension Int {
-    var hour: Int {
-        self / 3600
-    }
-    var minute: Int {
-        (self % 3600) / 60
-    }
-    var seconds: Int {
-        (self % 60)
-    }
-}
 
 
-extension UIViewController{
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
-    func hideKeyboardWhenTappedAround(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-}
+
 
 func downloadImage(`with` urlString : String, completion: @escaping (Result<UIImage, Error>) -> Void){
     guard let url = URL.init(string: urlString) else {
@@ -105,35 +84,4 @@ public protocol Persistable {
     init(managedObject : ManagedObject)
     
     func managedObject() -> ManagedObject
-}
-
-extension UITableViewCell{
-    static var identifier : String {
-        return String(describing: self)
-    }
-}
-
-extension UICollectionViewCell {
-    static var identifier : String {
-        return String(describing: self)
-    }
-}
-
-
-extension UITableView{
-    func dequeueCell<T: UITableViewCell>(type: T.Type, indexPath: IndexPath) -> T {
-        guard let cell = dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as? T else {
-            preconditionFailure()
-        }
-        return cell
-    }
-}
-
-extension UICollectionView{
-    func dequeueCell<T: UICollectionViewCell>(type: T.Type, indexPath: IndexPath) -> T {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as? T else {
-            preconditionFailure()
-        }
-        return cell
-    }
 }

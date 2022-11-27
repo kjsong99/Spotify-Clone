@@ -17,28 +17,3 @@ struct Artist : Codable{
 struct ArtistValue : Codable {
     var artist : Artist
 }
-//
-//class ArtistObject : Object{
-//    @objc dynamic var id : Int = 0
-//    @objc dynamic var name : String = ""
-//    @objc dynamic var imagePath : String = ""
-//}
-//
-//extension Artist : Persistable{
-//    typealias ManagedObject = ArtistObject
-//    init(managedObject: ArtistObject) {
-//        self.id = managedObject.id
-//        self.name = managedObject.name
-//        self.imagePath = managedObject.imagePath
-//    }
-//    
-//    func managedObject() -> ArtistObject {
-//        let object = ArtistObject()
-//        object.id = self.id
-//        object.name = self.name
-//        object.imagePath = self.imagePath
-//        return object
-//    }
-//    
-//    
-//}

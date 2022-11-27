@@ -10,17 +10,10 @@ import SnapKit
 class SearchHistoryCell: UITableViewCell {
 
     override func prepareForReuse(){
-        
+        self.image.image = nil
+        self.nameLabel.text = ""
+        self.infoLabel.text = ""
 
-    }
-    
-
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,7 +31,6 @@ class SearchHistoryCell: UITableViewCell {
         contentView.addSubview(labelView)
         labelView.addSubview(nameLabel)
         labelView.addSubview(infoLabel)
-        //        contentView.addSubview(mark)
         contentView.addSubview(deleteBtn)
         
         image.snp.makeConstraints{ image in
@@ -74,8 +66,6 @@ class SearchHistoryCell: UITableViewCell {
         deleteBtn.snp.makeConstraints{ btn in
             btn.centerY.equalToSuperview()
             btn.right.equalToSuperview().offset(-1 * convertWidth(originValue: 12.0))
-            //            btn.width.equalTo(convertWidth(originValue: 12.0))
-            //            btn.height.equalTo(convertHeight(originValue: 12.0))
         }
     }
     let labelView : UIView = {
@@ -116,27 +106,7 @@ class SearchHistoryCell: UITableViewCell {
         button.tintColor = hexStringToUIColor(hex: "#A7A7A7")
         return button
     }()
-    
-//    func configure(search: Search){
-////        image.image = UIImage(named: search.imageName)
-//        nameLabel.text = search.name
-//
-//        switch search.category {
-//
-//        case "artist":
-//            infoLabel.text = search.category
-//        case "music":
-//            infoLabel.text = search.category
-////            + " • " + search.singer!
-//        case "album":
-//            infoLabel.text = search.category
-////            " • " + search.singer!
-//        case "playlist":
-//            infoLabel.text = "laylist"
-//        default:
-//            infoLabel.text = "none"
-//        }
-    
+   
     func configure(search: Search){
         nameLabel.text = search.name
         guard let url = URL(string: "http://localhost:8080/" + search.image_path) else {

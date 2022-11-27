@@ -10,27 +10,15 @@ import SnapKit
 import RealmSwift
 import UIImageColors
 class SearchViewController: UIViewController {
-    let realm = try! Realm()
-    let tagList = ["최적 검색 결과", "곡","아티스트", "앨범",  "플레이리스트", "팟캐스트 및 프로그램", "프로필"]
-    var selected = 0
-    var searchList : [Search] = [Search]()
-    var histories : [Search] = [Search]()
+    
+    // MARK: - Override, Init
     
     override func viewWillAppear(_ bool : Bool){
         super.viewWillAppear(bool)
        updateHistory()
         
     }
-  
-    func updateHistory(){
-        histories.removeAll()
-        let objects = realm.objects(Search.self)
-        for i in objects{
-            histories.append(i)
-        }
-        searchHistoryTableView.dataSource = self
-        searchHistoryTableView.reloadData()
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -39,10 +27,7 @@ class SearchViewController: UIViewController {
         setTableView()
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.backButtonTitle = ""
-        
     }
-    
-
     
     func setLayout(){
         
@@ -153,9 +138,13 @@ class SearchViewController: UIViewController {
         categoryCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
     
-    // MARK: - UI Variable
+    // MARK: - Variable
     
-
+    let realm = try! Realm()
+    let tagList = ["최적 검색 결과", "곡","아티스트", "앨범",  "플레이리스트", "팟캐스트 및 프로그램", "프로필"]
+    var selected = 0
+    var searchList : [Search] = [Search]()
+    var histories : [Search] = [Search]()
     let searchHistoryView = {
         let view = UIView()
         view.backgroundColor = hexStringToUIColor(hex: "#121212")
@@ -248,6 +237,16 @@ class SearchViewController: UIViewController {
     }()
     
     // MARK: - Function
+    
+    func updateHistory(){
+        histories.removeAll()
+        let objects = realm.objects(Search.self)
+        for i in objects{
+            histories.append(i)
+        }
+        searchHistoryTableView.dataSource = self
+        searchHistoryTableView.reloadData()
+    }
     
     func search(){
         switch selected {
@@ -368,8 +367,11 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
                 case let .success(result):
                     result.getColors(){ color in
                         let vc = AlbumListViewController(data: self.histories[indexPath.row], image: result, color: (color?.secondary.withAlphaComponent(0.5).cgColor)!)
+                        
 //                        self.navigationController?.show(vc, sender: self)
+                        vc.title = self.histories[indexPath.row].name
                         self.navigationController?.pushViewControllerFromLeft(viewControlller: vc)
+                        
 //                        self.navigationController?.pushViewController(vc, animated: false)
                     }
                    
@@ -465,42 +467,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     
     
 }
-extension UITextField {
-    func setPlaceholder(color: UIColor) {
-        guard let string = self.placeholder else {
-            return
-        }
-        attributedPlaceholder = NSAttributedString(string: string, attributes: [.foregroundColor: color])
-    }
-}
 
-extension UINavigationController{
-    func pushViewControllerFromLeft(viewControlller : UIViewController){
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = .moveIn
-        transition.subtype = .fromRight
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
-        view.window?.layer.add(transition, forKey: kCATransition)
-        pushViewController(viewControlller, animated: false)
-        self.setNavigationBarHidden(false, animated: false)
-        
-    }
-    
-    func popViewControllerToLeft(){
-        let transition = CATransition()
-        transition.duration = 0.2
-        transition.type = .moveIn
-        transition.subtype = .fromLeft
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        
-        view.window?.layer.add(transition, forKey: kCATransition)
-        
-        popViewController(animated: false)
-        self.setNavigationBarHidden(true, animated: false)
-        
-    }
-}
 
 extension SearchViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

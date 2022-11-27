@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tab.tabBar.barTintColor = .black
         tab.tabBar.isTranslucent = false
         tab.title = nil
-        let tabs = [UINavigationController(rootViewController: HomeViewController()), UINavigationController(rootViewController: SearchViewController()), TestViewController()]
+        let tabs = [UINavigationController(rootViewController: HomeViewController()), UINavigationController(rootViewController: SearchViewController()), UINavigationController(rootViewController: HomeViewController())]
         let imageNames = ["home", "tab search", "library"]
         
         for vc in tabs{
@@ -28,16 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         tab.setViewControllers(tabs, animated: false)
-        let nav = UINavigationController(rootViewController: tab)
+//        let nav = UINavigationController(rootViewController: tab)
         
-        nav.navigationBar.isHidden = true
+//        nav.navigationBar.isHidden = true
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
         
-        window?.rootViewController = nav
+        window?.rootViewController = tab
         
         
         window?.makeKeyAndVisible()
